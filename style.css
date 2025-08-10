@@ -1,0 +1,293 @@
+/*
+ * Main stylesheet for Hoo Hoo Studios landing page
+ *
+ * Colour palette:
+ *   - Primary text: #FFFFFF (white)
+ *   - Secondary accent: #8b0000 (dark red)
+ *   - Background: #000000 (black)
+ *   - Card/background surfaces: #111111 (near black)
+ */
+
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #8b0000;
+    --background-color: #000000;
+    --surface-color: #111111;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Header / Navigation */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.brand .logo {
+    width: 36px;
+    height: 36px;
+    filter: brightness(0) invert(1);
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Hero Section */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('images/space.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Dark overlay on hero background */
+#hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+#hero .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+#hero .tagline {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #cccccc;
+}
+
+/* Section common styling */
+.section {
+    padding: 5rem 0;
+    background-color: var(--background-color);
+}
+
+/* About Section */
+#about h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+#about p {
+    font-size: 1.1rem;
+    max-width: 700px;
+}
+
+/* Grid Nite Section */
+.grid-section {
+    background-color: #1a0000; /* dark reddish background */
+    position: relative;
+    overflow: hidden;
+    color: #f5f5f5;
+}
+
+.grid-section::before,
+.grid-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Grid pattern overlay */
+.grid-section::before {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+}
+
+.grid-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.grid-section .grid-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #a00000;
+}
+
+/* Footer */
+footer {
+    background-color: var(--surface-color);
+    padding: 2rem 0;
+    text-align: center;
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+.footer-content a {
+    color: #cccccc;
+}
+
+.footer-content a:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+    #hero .tagline {
+        font-size: 1rem;
+    }
+    .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.6rem 1rem;
+    }
+}
+
+/* Hero container */
+#hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 72vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Full-bleed background video */
+.star-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* cover without letterboxing */
+  z-index: 0;
+  filter: grayscale(100%) contrast(110%) brightness(70%);
+  opacity: 0.85;               /* gentle so text pops */
+}
+
+/* Overlay vignette for readability */
+#hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+              rgba(0,0,0,0.35) 0%,
+              rgba(0,0,0,0.65) 60%,
+              rgba(0,0,0,0.85) 100%);
+  z-index: 1;
+}
+
+/* Owl layer above video, below text */
+#hero #owl-layer {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#hero .hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+}
+
+/* Existing owl styles/animations you already added stay the same */
+
+/* Respect reduced motion: freeze video at poster frame */
+@media (prefers-reduced-motion: reduce) {
+  .star-video { display: none; }
+  #hero { background: url('images/space.jpg') center/cover no-repeat; }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoo&nbsp;Hoo Studios</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/owl.svg">
+</head>
+<body>
+    <!-- Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
+                <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <!-- <a href="#gridnite">Grid&nbsp;Nite</a> -->
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" aria-label="Hoo Hoo Studios hero">
+    <!-- starfield video -->
+    <video
+        id="star-video"
+        class="star-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://media.istockphoto.com/id/1475632748/photo/great-white-owl-catches-prey-in-flight.jpg?s=612x612&w=0&k=20&c=raESfl_pKRazB8CIC66hYUdDBUBZe3QwiOHazQ9Cjj4="
+        aria-hidden="true"
+    >
+        <!-- Add both sources for better support -->
+        <!-- <source src="videos/starfield.webm" type="video/webm" /> -->
+        <source src="" type="video/mp4" />
+        <!-- Fallback image if video can’t play -->
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- light vignette to keep text readable -->
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- owls fly here -->
+    <div id="owl-layer" aria-hidden="true"></div>
+
+    <div class="hero-content">
+        <h1>Welcome to Hoo&nbsp;Hoo&nbsp;Studios</h1>
+        <p class="tagline">Owl About that Game.</p>
+    </div>
+    </section>
+
+
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container content">
+            <h2>About Us</h2>
+            <p>Some things don’t need a reason. Like owls in quiet flight, we make playful little worlds that appear without fuss—just small moments to make you smile.</p>
+        </div>
+    </section>
+
+    <!-- <section id="gridnite" class="section grid-section">
+        <div class="container content">
+            <h2>Grid&nbsp;Nite</h2>
+            <p class="grid-description">Coming soon!</p>
+        </div>
+    </section> -->
+
+    <!-- Contact Section / Footer -->
+    <footer id="contact">
+        <div class="container content footer-content">
+            <p class="footer-text">Interested in our work or just want to say hello? Reach out at <a href="mailto:hello@hoohoo.studio">hello@hoohoo.studio</a>.</p>
+            <!-- <p class="credits">Images courtesy of <a href="https://www.istockphoto.com">istockphoto</a> and <a href="https://freesvg.org">FreeSVG.org</a>.</p> -->
+        </div>
+    </footer>
+
+    <!-- Hidden SVG symbol for owl silhouette -->
+<svg width="0" height="0" style="position:absolute;left:-9999px;visibility:hidden">
+  <defs>
+    <!-- Simple, readable owl silhouette (pure black fill) -->
+    <symbol id="owl-silhouette" viewBox="0 0 200 100">
+      <path d="M5,60 C35,20 65,15 95,35 C110,20 130,18 160,30 175,20 185,20 195,25 
+               185,35 170,38 158,40 175,50 185,65 190,80 170,70 150,62 130,60 
+               118,76 98,82 80,82 60,82 45,75 35,65 20,70 12,72 5,75
+               Z" />
+      <!-- Eyes (subtle bumps, still black) -->
+      <circle cx="80" cy="55" r="6"/>
+      <circle cx="104" cy="55" r="6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Motion script -->
+<script>
+(function () {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Owl spawner
+  function spawnOwl() {
+    if (prefersReduced) return;
+
+    const owlLayer = document.getElementById('owl-layer');
+    if (!owlLayer) return;
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    const use = document.createElementNS(svgNS, 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#owl-silhouette');
+    svg.appendChild(use);
+
+    svg.setAttribute('class', 'owl');
+    // random height & direction
+    const topVh = 10 + Math.random() * 60;          // 10–70vh
+    const rtl = Math.random() < 0.5;                 // right-to-left sometimes
+    const duration = 20 + Math.random() * 25;        // 20–45s
+    const scale = 0.6 + Math.random() * 0.9;         // 0.6–1.5
+
+    svg.style.top = topVh + 'vh';
+    svg.style.setProperty('--fly-duration', duration + 's');
+    svg.style.setProperty('--owl-scale', scale);
+    svg.style.animationDirection = rtl ? 'reverse' : 'normal';
+
+    // start just off-screen
+    svg.style.left = rtl ? 'calc(100vw + 10rem)' : '-10rem';
+
+    owlLayer.appendChild(svg);
+
+    svg.addEventListener('animationend', () => svg.remove());
+  }
+
+  function scheduleNext() {
+    if (prefersReduced) return;
+    // spawn every 8–14s (staggered)
+    const delay = 8000 + Math.random() * 6000;
+    setTimeout(() => { spawnOwl(); scheduleNext(); }, delay);
+  }
+
+  // initial batch
+  if (!prefersReduced) {
+    setTimeout(spawnOwl, 1000);
+    setTimeout(spawnOwl, 3000);
+    setTimeout(spawnOwl, 5000);
+    scheduleNext();
+  }
+})();
+</script>
+
+</body>
+<script>
+(function () {
+  const video = document.getElementById('star-video');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!video) return;
+
+  // Reduced motion: keep poster image only
+  if (prefersReduced) {
+    video.removeAttribute('autoplay');
+    video.pause?.();
+    return;
+  }
+
+  // Fallback: play on first user interaction if blocked
+  const tryPlay = () => video.play().catch(() => {/* ignore */});
+  document.addEventListener('pointerdown', tryPlay, { once: true });
+  document.addEventListener('keydown', tryPlay, { once: true });
+
+  // Pause when hero is off-screen
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+  }, { threshold: 0.1 });
+  io.observe(document.getElementById('hero'));
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) video.pause();
+    else tryPlay();
+  });
+})();
+</script>
+
+</html>
