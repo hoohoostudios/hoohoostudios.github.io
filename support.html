@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoo&nbsp;Hoo Studios</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/owl.svg">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+      .support-card { max-width: 760px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px; }
+      @media (prefers-color-scheme: light){ .support-card{ background: #fff; border-color: rgba(0,0,0,0.08);} }
+      form.support { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+      form.support .full { grid-column: 1 / -1; }
+      label { font-weight: 600; font-size: 0.95rem; }
+      input, select, textarea { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(127,127,127,0.3); background: rgba(255,255,255,0.06); color: inherit; font: inherit; }
+      @media (prefers-color-scheme: light){ input,select,textarea{ background:#fff; } }
+      textarea{ min-height:120px; resize: vertical; }
+      .btn { display: inline-block; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(127,127,127,0.3); background: transparent; color: inherit; font-weight: 700; cursor:pointer; }
+      .btn[disabled]{ opacity:0.5; cursor:not-allowed; }
+      .error { color: #ff6b6b; font-size: 0.9rem; display: none; }
+      .success { color: #22c55e; font-size: 0.95rem; display:none; }
+      .req::after{ content:" *"; color:#ff6b6b; }
+      noscript { color: #ff6b6b; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
+                <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#support">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="support" class="section pt-20">
+      <div class="container content">
+        <h2>Support</h2>
+        <p>Fill in all required fields and complete the CAPTCHA before sending your request.</p>
+        <div class="support-card">
+          <form id="supportForm" class="support" novalidate>
+            <div class="full">
+              <label for="respEmail" class="req">Response Email</label>
+              <input id="respEmail" type="email" required>
+              <div id="errEmail" class="error">Enter a valid email address.</div>
+            </div>
+            <div>
+              <label for="game" class="req">Game</label>
+              <input id="game" type="text" value="Grid Nite" required>
+            </div>
+            <div>
+              <label for="device" class="req">Device Model</label>
+              <input id="device" type="text" required>
+            </div>
+            <div>
+              <label for="ios" class="req">iOS Version</label>
+              <input id="ios" type="text" required>
+            </div>
+            <div>
+              <label for="appv" class="req">App Version</label>
+              <input id="appv" type="text" required>
+            </div>
+            <div class="full">
+              <label for="desc" class="req">Description of Issue</label>
+              <textarea id="desc" required></textarea>
+            </div>
+            <div class="full">
+              <div class="g-recaptcha" data-sitekey="6LeUiaMrAAAAAJ9rftmTzJhTWoMcjsKQ4UfkH13g"></div>
+              <div id="errCaptcha" class="error">Please complete the CAPTCHA.</div>
+            </div>
+            <div class="full">
+              <button id="sendBtn" type="submit" class="btn">Send Support Email</button>
+              <div id="formOk" class="success">Opening your email client…</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container content footer-content">
+            <p class="footer-text">Interested in our work? <a href="mailto:hello@hoohoo.studio">hello@hoohoo.studio</a></p>
+        </div>
+    </footer>
+
+    <script>
+      document.getElementById('supportForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const email = document.getElementById('respEmail').value.trim();
+        const game = document.getElementById('game').value.trim();
+        const device = document.getElementById('device').value.trim();
+        const ios = document.getElementById('ios').value.trim();
+        const appv = document.getElementById('appv').value.trim();
+        const desc = document.getElementById('desc').value.trim();
+        const captchaResponse = (window.grecaptcha && window.grecaptcha.getResponse) ? window.grecaptcha.getResponse() : '';
+
+        if(!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
+          document.getElementById('errEmail').style.display='block'; return;
+        } else { document.getElementById('errEmail').style.display='none'; }
+        if(!game || !device || !ios || !appv || !desc) return;
+        if(!captchaResponse){ document.getElementById('errCaptcha').style.display='block'; return; }
+        document.getElementById('errCaptcha').style.display='none';
+
+        const subject = 'Support Request';
+        const body = `Response Email: ${email}\nGame: ${game}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;
+        window.location.href = `mailto:support@hoohoo.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        document.getElementById('formOk').style.display='block';
+      });
+    </script>
+</body>
+</html>
