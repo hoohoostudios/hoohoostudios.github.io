@@ -7,78 +7,184 @@
   <meta name="description" content="Privacy Policy for Hoo Hoo Studios apps and website." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/owl.svg">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';}
-    .container-narrow {max-width: 880px;}
-    header.hero {padding: 4rem 0 2rem;}
-    h1 {font-weight: 700;}
-    h2 {margin-top: 2.25rem; font-weight: 600;}
-    .card {border-radius: 1rem;}
-    .muted {color: #6c757d;}
-    .footer {padding: 2rem 0;}
-    a {text-decoration: none;}
-    .toc a {display: block; padding: .25rem 0;}
+    body {
+      padding-top: 80px;
+    }
+    .privacy-hero {
+      padding: 4rem 0 3rem;
+      background: var(--surface-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .privacy-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    .privacy-hero .lead {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .privacy-hero .muted {
+      color: var(--secondary-color);
+      font-size: 0.95rem;
+    }
+    .privacy-content {
+      padding: 4rem 0;
+    }
+    .toc-card {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 2rem;
+      position: sticky;
+      top: 100px;
+    }
+    .toc-card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+    .toc a {
+      display: block;
+      padding: 0.5rem 0;
+      color: var(--secondary-color);
+      transition: color var(--transition-speed) ease, padding-left var(--transition-speed) ease;
+      font-size: 0.95rem;
+    }
+    .toc a:hover {
+      color: var(--primary-color);
+      padding-left: 0.5rem;
+    }
+    .privacy-section {
+      margin-bottom: 3rem;
+    }
+    .privacy-section h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      padding-top: 1rem;
+    }
+    .privacy-section p {
+      color: var(--secondary-color);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .privacy-section ul,
+    .privacy-section ol {
+      color: var(--secondary-color);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .privacy-section li {
+      margin-bottom: 0.5rem;
+    }
+    .privacy-section code {
+      background: var(--surface-color);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      color: var(--accent-color);
+    }
+    .privacy-section strong {
+      color: var(--primary-color);
+    }
+    .privacy-section a {
+      color: var(--accent-color);
+    }
+    .privacy-section a:hover {
+      color: var(--accent-hover);
+    }
+    address {
+      font-style: normal;
+      color: var(--secondary-color);
+      line-height: 1.7;
+    }
+    @media (max-width: 992px) {
+      .toc-card {
+        position: static;
+        margin-bottom: 2rem;
+      }
+      .privacy-hero h1 {
+        font-size: 2.5rem;
+      }
+      main > div > div {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .privacy-hero h1 {
+        font-size: 2rem;
+      }
+      .privacy-hero .lead {
+        font-size: 1.1rem;
+      }
+      .privacy-section h2 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container container-narrow">
-      <a class="navbar-brand fw-bold" href="#">Hoo Hoo Studios</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#info-we-collect">Information We Collect</a></li>
-          <li class="nav-item"><a class="nav-link" href="#how-we-use">How We Use It</a></li>
-          <li class="nav-item"><a class="nav-link" href="#third-parties">Third Parties</a></li>
-          <li class="nav-item"><a class="nav-link" href="#your-rights">Your Rights</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+  <!-- Navigation -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
+        <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <header class="hero">
-    <div class="container container-narrow">
-      <h1 class="mb-3">Privacy Policy</h1>
+  <header class="privacy-hero">
+    <div class="container">
+      <h1>Privacy Policy</h1>
       <p class="lead">We respect your privacy and keep data collection to the minimum necessary to run and improve our iOS games and website.</p>
       <p class="muted">Effective Date: <strong>August 12, 2025</strong></p>
     </div>
   </header>
 
-  <main class="container container-narrow pb-5">
-    <div class="row g-4">
-      <div class="col-12 col-lg-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="h5 mb-3">On this page</h2>
-            <nav class="toc small">
-              <a href="#who-we-are">1. Who We Are</a>
-              <a href="#info-we-collect">2. Information We Collect</a>
-              <a href="#how-we-use">3. How We Use Information</a>
-              <a href="#third-parties">4. Third‑Party Services</a>
-              <a href="#ads-opt-out">5. Ads & Opt‑Out</a>
-              <a href="#children">6. Children’s Privacy</a>
-              <a href="#retention">7. Data Retention</a>
-              <a href="#your-rights">8. Your Rights</a>
-              <a href="#changes">9. Changes to This Policy</a>
-              <a href="#contact">10. Contact Us</a>
-            </nav>
-          </div>
+  <main class="container privacy-content">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 300px 1fr; gap: 3rem; align-items: start;">
+        <div class="toc-card">
+          <h2>On this page</h2>
+          <nav class="toc">
+            <a href="#who-we-are">1. Who We Are</a>
+            <a href="#info-we-collect">2. Information We Collect</a>
+            <a href="#how-we-use">3. How We Use Information</a>
+            <a href="#third-parties">4. Third‑Party Services</a>
+            <a href="#ads-opt-out">5. Ads & Opt‑Out</a>
+            <a href="#children">6. Children's Privacy</a>
+            <a href="#retention">7. Data Retention</a>
+            <a href="#your-rights">8. Your Rights</a>
+            <a href="#changes">9. Changes to This Policy</a>
+            <a href="#contact">10. Contact Us</a>
+          </nav>
         </div>
-      </div>
 
-      <div class="col-12 col-lg-8">
-        <section id="who-we-are" class="mb-4">
+        <div>
+        <section id="who-we-are" class="privacy-section">
           <h2>1) Who We Are</h2>
           <p>Hoo Hoo Studios ("Hoo Hoo," "we," "our," or "us") creates mobile games, including iOS titles such as <em>Grid Nite</em>, and operates the website located at <code>hoohoo.studio</code> and related pages.</p>
         </section>
 
-        <section id="info-we-collect" class="mb-4">
+        <section id="info-we-collect" class="privacy-section">
           <h2>2) Information We Collect</h2>
           <p>We do not collect personally identifiable information unless you voluntarily provide it (for example, if you email support). Our apps and site may automatically collect limited non‑personal information to ensure functionality and improve quality, including:</p>
           <ul>
@@ -90,7 +196,7 @@
           <p class="small text-muted">Note: If you contact us, we will receive the email address and any content you include.</p>
         </section>
 
-        <section id="how-we-use" class="mb-4">
+        <section id="how-we-use" class="privacy-section">
           <h2>3) How We Use Information</h2>
           <ul>
             <li>Operate, maintain, and improve our games and website</li>
@@ -100,7 +206,7 @@
           </ul>
         </section>
 
-        <section id="third-parties" class="mb-4">
+        <section id="third-parties" class="privacy-section">
           <h2>4) Third‑Party Services</h2>
           <p>We may use the following services in some titles or on our website. Their use of data is governed by their own privacy policies:</p>
           <ul>
@@ -111,7 +217,7 @@
           <p class="small text-muted">Ad providers may receive device identifiers (e.g., IDFA), IP address, coarse location, and interaction data to show and measure ads. You can limit tracking as described below.</p>
         </section>
 
-        <section id="ads-opt-out" class="mb-4">
+        <section id="ads-opt-out" class="privacy-section">
           <h2>5) Ads & Opt‑Out Controls (iOS)</h2>
           <p>If a game uses personalized advertising, you can limit or opt out using iOS settings:</p>
           <ol>
@@ -122,27 +228,27 @@
           <p>If you see a consent prompt in‑app, you can change your choice later in your device settings.</p>
         </section>
 
-        <section id="children" class="mb-4">
+        <section id="children" class="privacy-section">
           <h2>6) Children’s Privacy</h2>
           <p>Our games are for a general audience and are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child provided personal information to us, please contact us and we will delete it.</p>
         </section>
 
-        <section id="retention" class="mb-4">
+        <section id="retention" class="privacy-section">
           <h2>7) Data Retention</h2>
           <p>We retain information only as long as necessary for the purposes described in this policy or as required by law. Support emails you send us are kept only as long as needed to address your request.</p>
         </section>
 
-        <section id="your-rights" class="mb-4">
+        <section id="your-rights" class="privacy-section">
           <h2>8) Your Rights</h2>
           <p>Depending on your location, you may have rights to access, correct, delete, or restrict certain processing of your information, and to object to personalized ads. To make a request, contact us at <a href="mailto:support@hoohoo.studio">support@hoohoo.studio</a>. We may take reasonable steps to confirm your identity before responding.</p>
         </section>
 
-        <section id="changes" class="mb-4">
+        <section id="changes" class="privacy-section">
           <h2>9) Changes to This Policy</h2>
           <p>We may update this Privacy Policy from time to time. We will post changes on this page and update the Effective Date above.</p>
         </section>
 
-        <section id="contact" class="mb-4">
+        <section id="contact" class="privacy-section">
           <h2>10) Contact Us</h2>
           <p>If you have questions or requests about privacy, contact:</p>
           <address class="mb-0">
@@ -150,21 +256,28 @@
             Email: <a href="mailto:support@hoohoo.studio">support@hoohoo.studio</a>
           </address>
         </section>
+        </div>
       </div>
     </div>
   </main>
 
-  <footer class="footer border-top bg-light">
-    <div class="container container-narrow d-flex flex-column flex-md-row justify-content-between align-items-start gap-2">
-      <small class="text-muted">&copy; <span id="year"></span> Hoo Hoo Studios</small>
-      <small class="text-muted">Last updated: <time id="last-updated" datetime="2025-08-12">August 12, 2025</time></small>
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-text">
+        <p>&copy; <span id="year"></span> Hoo Hoo Studios. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Last updated: <time datetime="2025-08-12">August 12, 2025</time></p>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Auto-year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

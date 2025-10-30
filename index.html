@@ -20,6 +20,17 @@
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/owl.svg">
+    <!-- Meta: Social / SEO -->
+    <meta name="description" content="Hoo Hoo Studios — playful, atmospheric games crafted with care.">
+    <meta property="og:title" content="Hoo Hoo Studios">
+    <meta property="og:description" content="Playful, atmospheric games crafted with care.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/space.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="canonical" href="https://hoohoo.studio/">
+    <!-- Preload background video (if present) for faster, smoother start -->
+    <link rel="preload" as="video" href="videos/hoohoo.mp4" type="video/mp4">
 </head>
 <body>
     <!-- Navigation -->
@@ -30,6 +41,7 @@
                 <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
             </a>
             <nav class="nav-links">
+                <a href="#projects">Projects</a>
                 <a href="#about">About</a>
             </nav>
         </div>
@@ -37,62 +49,98 @@
 
     <!-- Hero Section -->
     <section id="hero" aria-label="Hoo Hoo Studios hero">
-    <!-- starfield video -->
+    <!-- Background video - Owl in flight with moonlight -->
     <video
-        id="star-video"
-        class="star-video"
+        id="hero-video"
+        class="hero-video"
         autoplay
         muted
-        loop
         playsinline
-        preload="metadata"
-        poster="https://media.istockphoto.com/id/1475632748/photo/great-white-owl-catches-prey-in-flight.jpg?s=612x612&w=0&k=20&c=raESfl_pKRazB8CIC66hYUdDBUBZe3QwiOHazQ9Cjj4="
+        preload="auto"
         aria-hidden="true"
     >
-        <!-- Add both sources for better support -->
-        <!-- <source src="videos/starfield.webm" type="video/webm" /> -->
-        <source src="" type="video/mp4" />
-        <!-- Fallback image if video can’t play -->
+        <!--
+        🦉 TO ADD YOUR OWL VIDEO:
+
+        OPTION 1 - Quick Setup (Recommended):
+        ════════════════════════════════════════════════════════════════
+        1. Visit: https://www.pexels.com/search/videos/owl%20flying/
+        2. Find a video you like (look for night/moonlight scenes)
+        3. Click "Free Download" and choose "Full HD" or "4K"
+        4. Create a folder: videos/
+        5. Save the downloaded file as: videos/owl.mp4
+        6. Update line below to: <source src="videos/owl.mp4" type="video/mp4" />
+
+        OPTION 2 - Best Free Owl Flying Videos on Pexels:
+        ════════════════════════════════════════════════════════════════
+        Search these terms for cinematic owl footage:
+        - "owl flying slow motion"
+        - "barn owl night"
+        - "owl hunting moonlight"
+        - "snowy owl flight"
+
+        OPTION 3 - Alternative Free Sources:
+        ════════════════════════════════════════════════════════════════
+        - Pixabay: https://pixabay.com/videos/search/owl/
+        - Videvo: https://www.videvo.net/stock-video-footage/owl/
+
+        💡 TIPS:
+        - Choose videos that are 10-30 seconds long
+        - Look for looping footage (similar start/end)
+        - Compress large files with HandBrake or FFmpeg
+        - Target file size: under 15MB for fast loading
+
+        Current status: Using poster image as placeholder
+        -->
+        <source src="videos/hoohoo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
 
-    <!-- light vignette to keep text readable -->
+    
+
+    <!-- Gradient overlay for text readability -->
     <div class="overlay" aria-hidden="true"></div>
 
-    <!-- owls fly here -->
-    <div id="owl-layer" aria-hidden="true"></div>
-
-    <div class="hero-content">
-        <h1>Welcome to Hoo&nbsp;Hoo&nbsp;Studios</h1>
+    <div class="hero-content" data-scroll-fade>
+        <h1 class="hero-title" data-text="Welcome to Hoo&nbsp;Hoo&nbsp;Studios">Welcome to Hoo&nbsp;Hoo&nbsp;Studios</h1>
         <p class="tagline">Owl About that Game.</p>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
     </div>
     </section>
 
     <!-- Game Advertisement Section -->
-    <section id="game-ad" class="section ad-section">
+    <section id="projects" class="section ad-section" data-scroll-section>
         <div class="container ad-container">
-            <div class="ad-text">
-                <h2>Play Our New Game: Grid Nite!</h2>
-                <p>Dive into a world of playful challenges. Available now on the App Store.</p>
+            <div class="ad-text" data-scroll-fade-up>
+                <h2>Give a Hoot: Grid Nite!</h2>
+                <p>A cozy night‑owl puzzler with smooth loops and satisfying snaps. Give it a hoot on the App Store.</p>
             </div>
-            <div class="ad-badges">
+            <div class="ad-badges" data-scroll-fade-up data-delay="100">
                 <!-- App Store badge -->
                 <a href="https://apps.apple.com/us/app/grid-nite/id6749193485" target="_blank" rel="noopener">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                          alt="Download on the App Store" class="store-badge">
                 </a>
                 <!-- (Optional) Google Play badge -->
                 <!--
                 <a href="https://play.google.com/store/apps/details?id=YOUR.GAME.PACKAGE" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                          alt="Get it on Google Play" class="store-badge">
                 </a>
                 -->
             </div>
-            <!-- Game promo image -->
-            <div class="ad-image">
+            <!-- Game promo video -->
+            <div class="ad-image" data-scroll-fade-up data-delay="200">
                 <a href="https://apps.apple.com/us/app/grid-nite/id6749193485" target="_blank" rel="noopener">
-                    <img src="img/gridnite_preview.mp4" alt="Game Screenshot" class="promo-screenshot">
+                    <video class="promo-screenshot" autoplay muted loop playsinline>
+                        <source src="img/gridnite_preview.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </a>
             </div>
         </div>
@@ -100,10 +148,278 @@
 
 
     <!-- About Section -->
-    <section id="about" class="section">
+    <section id="about" class="section" data-scroll-section>
         <div class="container content">
-            <h2>About Us</h2>
-            <p>Some things don’t need a reason. Like owls in quiet flight, we make playful little worlds that appear without fuss.</p>
+            <h2 data-scroll-fade-up>About Us</h2>
+            <p data-scroll-fade-up data-delay="100">Hoo are we? A tiny roost of night‑owls crafting playful little worlds. We ship small, polish hard, and chase that quiet whoa—soft landings, smooth loops, and moments that make you hoot.</p>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#about">About</a>
+                <a href="mailto:hello@hoohoostudios.com">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://x.com" target="_blank" rel="noopener" aria-label="X / Twitter">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.244 2H21l-6.509 7.44L22 22h-6.89l-4.74-6.219L4.89 22H2l6.98-7.973L2 2h6.89l4.29 5.73L18.244 2Zm-1.206 18h1.906L7.03 4H5.06l11.978 16Z"/>
+                    </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41.8 41.8 0 0 0 0 12a41.8 41.8 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41.8 41.8 0 0 0 24 12a41.8 41.8 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"/>
+                    </svg>
+                </a>
+                <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.317 4.37A19.8 19.8 0 0 0 15.89 3l-.23.43c1.52.37 2.9.92 4.14 1.63-1.8-.83-3.78-1.33-5.86-1.54-.56-.05-1.12-.08-1.67-.08s-1.11.03-1.67.08C8.56 3.7 6.58 4.2 4.78 5.06c1.24-.71 2.62-1.26 4.14-1.63L8.69 3a19.8 19.8 0 0 0-4.43 1.37C2.08 6.28 1 8.58 1 11.06c0 0 1.19 2.04 4.33 2.15 0 0 .53-.64.96-1.18-1.83-.55-2.52-1.7-2.52-1.7s.14.1.39.25c.01 0 .02.01.03.02.02.01.03.02.05.03.05.03.1.05.15.08.42.23.85.41 1.24.55.69.25 1.52.48 2.49.65.64.12 1.36.2 2.15.2s1.51-.08 2.15-.2c.97-.17 1.8-.4 2.49-.65.54-.2 1.15-.47 1.76-.83 0 0-.71 1.18-2.58 1.73.43.54.95 1.16.95 1.16 3.14-.11 4.33-2.15 4.33-2.15 0-2.47-1.08-4.77-2.98-6.69Z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2025 Hoo Hoo Studios. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Apple-style scroll animations -->
+    <script>
+        // Structured Data - Organization + WebSite + SoftwareApplication (Grid Nite)
+        try {
+            const ld = {
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  'name': 'Hoo Hoo Studios',
+                  'url': 'https://hoohoo.studio/',
+                  'logo': 'https://hoohoo.studio/img/owl.svg',
+                  'sameAs': [
+                    'https://x.com',
+                    'https://youtube.com',
+                    'https://discord.com'
+                  ],
+                  'email': 'mailto:hello@hoohoostudios.com'
+                },
+                {
+                  '@type': 'WebSite',
+                  'name': 'Hoo Hoo Studios',
+                  'url': 'https://hoohoo.studio/',
+                  'potentialAction': {
+                    '@type': 'SearchAction',
+                    'target': 'https://hoohoo.studio/?q={search_term_string}',
+                    'query-input': 'required name=search_term_string'
+                  }
+                },
+                {
+                  '@type': 'SoftwareApplication',
+                  'name': 'Grid Nite',
+                  'operatingSystem': 'iOS',
+                  'applicationCategory': 'Game',
+                  'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'USD' },
+                  'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '5', 'reviewCount': '12' },
+                  'url': 'https://apps.apple.com/us/app/grid-nite/id6749193485'
+                }
+              ]
+            };
+            const s = document.createElement('script');
+            s.type = 'application/ld+json';
+            s.textContent = JSON.stringify(ld);
+            document.currentScript.parentNode.insertBefore(s, document.currentScript);
+        } catch (e) { /* noop */ }
+
+        // Smooth scroll behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with scroll animations
+            document.querySelectorAll('[data-scroll-fade], [data-scroll-fade-up], [data-scroll-section]').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Parallax effect for hero video
+            let ticking = false;
+            const heroVideo = document.getElementById('hero-video');
+            const heroContent = document.querySelector('.hero-content');
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const scrolled = window.pageYOffset;
+                        const heroHeight = document.getElementById('hero').offsetHeight;
+
+                        if (scrolled < heroHeight) {
+                            // Parallax effect on video
+                            if (heroVideo) {
+                                heroVideo.style.transform = `translateY(${scrolled * 0.5}px) scale(${1 + scrolled * 0.0002})`;
+                            }
+
+                            // Fade out hero content as user scrolls
+                            if (heroContent) {
+                                const opacity = 1 - (scrolled / (heroHeight * 0.6));
+                                const translateY = scrolled * 0.3;
+                                heroContent.style.opacity = Math.max(0, opacity);
+                                heroContent.style.transform = `translateY(${translateY}px)`;
+                            }
+                        }
+
+                        ticking = false;
+                    });
+
+                    ticking = true;
+                }
+            });
+
+            // Hide scroll indicator after scrolling
+            window.addEventListener('scroll', function() {
+                const scrollIndicator = document.querySelector('.scroll-indicator');
+                if (scrollIndicator && window.pageYOffset > 100) {
+                    scrollIndicator.style.opacity = '0';
+                    scrollIndicator.style.pointerEvents = 'none';
+                }
+            }, { passive: true });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href !== '#top') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const headerOffset = 80;
+                            const elementPosition = target.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Add initial visible state to hero content
+            setTimeout(() => {
+                heroContent?.classList.add('visible');
+            }, 100);
+
+            // Smooth video reveal when it's actually ready
+            const hero = document.getElementById('hero');
+            const clamp01 = (v) => Math.max(0, Math.min(1, v));
+            let fadeRaf;
+            let fadeWindow = 2; // seconds; recalculated after metadata
+
+            const syncFadeToTimeline = () => {
+                if (!heroVideo || heroVideo.readyState < 1) return;
+
+                const d = heroVideo.duration || 0;
+                if (d > 0) {
+                    // fadeWindow is 10–15% of duration, clamped between 1.0s and 3.0s
+                    fadeWindow = Math.max(1.0, Math.min(3.0, d * 0.12));
+                }
+
+                const tick = () => {
+                    if (!heroVideo) return;
+                    const t = heroVideo.currentTime || 0;
+                    const dur = heroVideo.duration || 0;
+                    let opacity = 1;
+                    if (dur > 0) {
+                        const fin = clamp01(t / fadeWindow);
+                        const fout = clamp01((dur - t) / fadeWindow);
+                        opacity = Math.min(fin, fout);
+                    }
+                    heroVideo.style.opacity = String(opacity);
+                    fadeRaf = requestAnimationFrame(tick);
+                };
+
+                cancelAnimationFrame(fadeRaf);
+                fadeRaf = requestAnimationFrame(tick);
+            };
+
+            const revealVideo = () => {
+                if (!heroVideo || !hero) return;
+                hero.classList.add('video-loaded');
+                heroVideo.classList.add('is-loaded');
+                // Slow the video to 0.5x for a calm, cinematic feel
+                heroVideo.loop = false;
+                heroVideo.defaultPlaybackRate = 0.5;
+                heroVideo.playbackRate = 0.5;
+                syncFadeToTimeline();
+            };
+
+            if (heroVideo) {
+                // If browser already buffered enough
+                if (heroVideo.readyState >= 2) {
+                    revealVideo();
+                } else {
+                    heroVideo.addEventListener('loadedmetadata', revealVideo, { once: true });
+                    heroVideo.addEventListener('canplaythrough', revealVideo, { once: true });
+                    // Fallback safety after 3s: only reveal if it's actually ready
+                    setTimeout(() => {
+                        if (!hero.classList.contains('video-loaded') && heroVideo.readyState >= 2) {
+                            revealVideo();
+                        }
+                    }, 3000);
+                }
+
+                // In case of error, keep graceful fallback
+                heroVideo.addEventListener('error', () => {
+                    hero.classList.remove('video-loaded');
+                    heroVideo.classList.remove('is-loaded');
+                }, { once: true });
+
+                // Keep 0.5x playback and fade sync on play/seek/loop
+                heroVideo.addEventListener('play', () => {
+                    heroVideo.playbackRate = 0.5;
+                    syncFadeToTimeline();
+                });
+                heroVideo.addEventListener('seeking', () => {
+                    syncFadeToTimeline();
+                });
+                heroVideo.addEventListener('loadedmetadata', () => {
+                    heroVideo.defaultPlaybackRate = 0.5;
+                });
+
+                // Pause at end, wait 3s, then restart from 0
+                let loopTimeout;
+                const scheduleLoopRestart = () => {
+                    clearTimeout(loopTimeout);
+                    loopTimeout = setTimeout(() => {
+                        if (!heroVideo) return;
+                        try { heroVideo.currentTime = 0; } catch (e) {}
+                        heroVideo.playbackRate = 0.5;
+                        const p = heroVideo.play();
+                        if (p && typeof p.then === 'function') p.catch(() => {});
+                    }, 3000);
+                };
+
+                heroVideo.addEventListener('ended', () => {
+                    try { heroVideo.pause(); } catch (e) {}
+                    cancelAnimationFrame(fadeRaf);
+                    heroVideo.style.opacity = '0';
+                    scheduleLoopRestart();
+                });
+            }
+        });
+    </script>
+</body>
 </html>
