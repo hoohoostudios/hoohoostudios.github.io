@@ -16,6 +16,8 @@
     <title>Hoo&nbsp;Hoo Studios</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
@@ -114,7 +116,8 @@
     </section>
 
     <!-- Game Advertisement Section -->
-    <section id="projects" class="section ad-section" data-scroll-section>
+    <section id="projects" class="section ad-section grid-section-wrapper" data-scroll-section>
+        <canvas id="grid-canvas" class="grid-background"></canvas>
         <div class="container ad-container">
             <div class="ad-text" data-scroll-fade-up>
                 <h2>Give a Hoot: Grid Nite!</h2>
@@ -166,19 +169,13 @@
             </div>
             <div class="footer-social">
                 <a href="https://x.com" target="_blank" rel="noopener" aria-label="X / Twitter">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.244 2H21l-6.509 7.44L22 22h-6.89l-4.74-6.219L4.89 22H2l6.98-7.973L2 2h6.89l4.29 5.73L18.244 2Zm-1.206 18h1.906L7.03 4H5.06l11.978 16Z"/>
-                    </svg>
+                    <i class="fa-brands fa-x-twitter"></i>
                 </a>
                 <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41.8 41.8 0 0 0 0 12a41.8 41.8 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41.8 41.8 0 0 0 24 12a41.8 41.8 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"/>
-                    </svg>
+                    <i class="fa-brands fa-youtube"></i>
                 </a>
                 <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.317 4.37A19.8 19.8 0 0 0 15.89 3l-.23.43c1.52.37 2.9.92 4.14 1.63-1.8-.83-3.78-1.33-5.86-1.54-.56-.05-1.12-.08-1.67-.08s-1.11.03-1.67.08C8.56 3.7 6.58 4.2 4.78 5.06c1.24-.71 2.62-1.26 4.14-1.63L8.69 3a19.8 19.8 0 0 0-4.43 1.37C2.08 6.28 1 8.58 1 11.06c0 0 1.19 2.04 4.33 2.15 0 0 .53-.64.96-1.18-1.83-.55-2.52-1.7-2.52-1.7s.14.1.39.25c.01 0 .02.01.03.02.02.01.03.02.05.03.05.03.1.05.15.08.42.23.85.41 1.24.55.69.25 1.52.48 2.49.65.64.12 1.36.2 2.15.2s1.51-.08 2.15-.2c.97-.17 1.8-.4 2.49-.65.54-.2 1.15-.47 1.76-.83 0 0-.71 1.18-2.58 1.73.43.54.95 1.16.95 1.16 3.14-.11 4.33-2.15 4.33-2.15 0-2.47-1.08-4.77-2.98-6.69Z"/>
-                    </svg>
+                    <i class="fa-brands fa-discord"></i>
                 </a>
             </div>
             <div class="footer-text">
@@ -286,6 +283,16 @@
                     ticking = true;
                 }
             });
+
+            // Header transparency on scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
 
             // Hide scroll indicator after scrolling
             window.addEventListener('scroll', function() {
@@ -418,6 +425,231 @@
                     heroVideo.style.opacity = '0';
                     scheduleLoopRestart();
                 });
+            }
+
+            // Grid Nite animated background - "Lights Out" style
+            const canvas = document.getElementById('grid-canvas');
+            const adSection = document.querySelector('.ad-section');
+
+            if (canvas && adSection) {
+                const ctx = canvas.getContext('2d');
+                let animationId;
+
+                // Grid configuration - maintain square aspect ratio
+                const gridSize = 60; // Size of each cell in pixels
+                let cols, rows;
+
+                function calculateGridDimensions() {
+                    const adRect = adSection.getBoundingClientRect();
+                    const adHeight = Math.max(adRect.height, adSection.scrollHeight);
+
+                    // Add extra cells to ensure full coverage even with gaps
+                    cols = Math.ceil(adRect.width / gridSize) + 2;
+                    rows = Math.ceil(adHeight / gridSize) + 2;
+                }
+
+                calculateGridDimensions();
+
+                // Initialize grid state (0 = off, 1 = on) with 50% entropy
+                let grid = Array(rows).fill().map(() =>
+                    Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
+                );
+                let targetGrid = Array(rows).fill().map(() =>
+                    Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
+                );
+                // Track flash state for transition effect
+                let flashGrid = Array(rows).fill().map(() => Array(cols).fill(0));
+
+                // Resize canvas - set internal resolution to match display size
+                function resizeCanvas() {
+                    const adRect = adSection.getBoundingClientRect();
+                    const adHeight = Math.max(adRect.height, adSection.scrollHeight);
+
+                    // Store old dimensions
+                    const oldRows = rows;
+                    const oldCols = cols;
+
+                    // Set canvas internal resolution to match CSS size
+                    canvas.width = adRect.width;
+                    canvas.height = adHeight;
+                    // No CSS scaling needed - 1:1 pixel mapping
+                    canvas.style.width = adRect.width + 'px';
+                    canvas.style.height = adHeight + 'px';
+
+                    // Recalculate grid dimensions with new height
+                    calculateGridDimensions();
+
+                    // Reinitialize grids if dimensions changed
+                    if (rows !== oldRows || cols !== oldCols) {
+                        grid = Array(rows).fill().map(() =>
+                            Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
+                        );
+                        targetGrid = Array(rows).fill().map(() =>
+                            Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
+                        );
+                        flashGrid = Array(rows).fill().map(() => Array(cols).fill(0));
+                    }
+                }
+                resizeCanvas();
+
+                // Toggle cell and neighbors (Lights Out pattern)
+                function toggleCell(row, col) {
+                    const positions = [
+                        [row, col],       // center
+                        [row - 1, col],   // top
+                        [row + 1, col],   // bottom
+                        [row, col - 1],   // left
+                        [row, col + 1]    // right
+                    ];
+
+                    positions.forEach(([r, c]) => {
+                        if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                            targetGrid[r][c] = 1 - targetGrid[r][c]; // Toggle
+                            flashGrid[r][c] = 1; // Trigger flash effect
+                        }
+                    });
+                }
+
+                // Randomly trigger toggles for organic animation
+                function randomToggle() {
+                    const row = Math.floor(Math.random() * rows);
+                    const col = Math.floor(Math.random() * cols);
+                    toggleCell(row, col);
+                }
+
+                // Smooth interpolation between current and target state
+                function updateGrid() {
+                    for (let r = 0; r < rows; r++) {
+                        // Safety check for array bounds
+                        if (!grid[r] || !targetGrid[r] || !flashGrid[r]) continue;
+
+                        for (let c = 0; c < cols; c++) {
+                            // Safety check for array bounds
+                            if (grid[r][c] === undefined || targetGrid[r][c] === undefined) continue;
+
+                            const diff = targetGrid[r][c] - grid[r][c];
+                            grid[r][c] += diff * 0.05; // Smooth transition
+
+                            // Decay flash effect slowly
+                            if (flashGrid[r][c] > 0) {
+                                flashGrid[r][c] -= 0.02; // Slow fade
+                                if (flashGrid[r][c] < 0) flashGrid[r][c] = 0;
+                            }
+                        }
+                    }
+                }
+
+                // Draw the grid with rounded corners and uniform angled gradient
+                let cachedGradient = null;
+                let lastCanvasWidth = 0;
+                let lastCanvasHeight = 0;
+
+                function drawGrid() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const gap = 2;
+                    const radius = 8;
+
+                    // Cache gradient if canvas size hasn't changed
+                    if (!cachedGradient || lastCanvasWidth !== canvas.width || lastCanvasHeight !== canvas.height) {
+                        cachedGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                        cachedGradient.addColorStop(0, 'rgba(255, 70, 85, 0.35)');
+                        cachedGradient.addColorStop(0.5, 'rgba(255, 70, 85, 0.25)');
+                        cachedGradient.addColorStop(1, 'rgba(255, 70, 85, 0.15)');
+                        lastCanvasWidth = canvas.width;
+                        lastCanvasHeight = canvas.height;
+                    }
+
+                    // Draw all active squares as masks for the gradient
+                    for (let r = 0; r < rows; r++) {
+                        // Safety check for array bounds
+                        if (!grid[r] || !flashGrid[r]) continue;
+
+                        for (let c = 0; c < cols; c++) {
+                            // Safety check for array bounds
+                            if (grid[r][c] === undefined) continue;
+
+                            const opacity = grid[r][c];
+                            const flash = flashGrid[r][c];
+
+                            if (opacity > 0.01 || flash > 0.01) {
+                                // Calculate position - use gridSize directly (60px)
+                                const x = c * gridSize + gap;
+                                const y = r * gridSize + gap;
+                                const size = gridSize - gap * 2; // 56px square
+
+                                // Combine opacity with flash (flash adds brightness)
+                                const finalOpacity = Math.min(1, opacity + flash * 0.6);
+                                ctx.globalAlpha = finalOpacity;
+
+                                // Draw filled rounded SQUARE (width = height = size)
+                                // Use brighter color when flashing
+                                if (flash > 0.1) {
+                                    // Flash with bright white-ish red
+                                    const flashColor = `rgba(255, ${100 + Math.floor(flash * 155)}, ${100 + Math.floor(flash * 155)}, 1)`;
+                                    ctx.fillStyle = flashColor;
+                                } else {
+                                    ctx.fillStyle = cachedGradient;
+                                }
+
+                                ctx.beginPath();
+                                ctx.roundRect(x, y, size, size, radius);
+                                ctx.fill();
+
+                                // Draw subtle border (only if needed for performance)
+                                if (finalOpacity > 0.05) {
+                                    ctx.strokeStyle = flash > 0.1 ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 70, 85, 0.2)';
+                                    ctx.lineWidth = 1;
+                                    ctx.beginPath();
+                                    ctx.roundRect(x, y, size, size, radius);
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+                    }
+
+                    // Reset global alpha
+                    ctx.globalAlpha = 1;
+                }
+
+                // Animation loop
+                let lastToggle = 0;
+                function animate(timestamp) {
+                    // Trigger random toggles every 800-1500ms
+                    if (timestamp - lastToggle > 800 + Math.random() * 700) {
+                        randomToggle();
+                        lastToggle = timestamp;
+                    }
+
+                    updateGrid();
+                    drawGrid();
+                    animationId = requestAnimationFrame(animate);
+                }
+
+                // Start animation when section is in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (!animationId) animate(0);
+                        } else {
+                            if (animationId) {
+                                cancelAnimationFrame(animationId);
+                                animationId = null;
+                            }
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                observer.observe(adSection);
+
+                // Handle window resize with debounce for efficiency
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        resizeCanvas();
+                    }, 150); // Debounce resize events
+                }, { passive: true });
             }
         });
     </script>
