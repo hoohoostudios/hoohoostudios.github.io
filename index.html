@@ -23,9 +23,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/owl.svg">
     <!-- Meta: Social / SEO -->
-    <meta name="description" content="Hoo Hoo Studio — playful, atmospheric games crafted with care.">
+    <meta name="description" content="Hoo Hoo Studio — inventive games and playful creative jams for culturally rooted, public-interest projects.">
     <meta property="og:title" content="Hoo Hoo Studio">
-    <meta property="og:description" content="Playful, atmospheric games crafted with care.">
+    <meta property="og:description" content="Inventive games and playful creative jams for culturally rooted, public-interest projects.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="img/space.jpg">
     <meta name="twitter:card" content="summary_large_image">
@@ -105,7 +105,7 @@
 
     <div class="hero-content" data-scroll-fade>
         <h1 class="hero-title" data-text="Welcome to Hoo&nbsp;Hoo&nbsp;Studio">Welcome to Hoo&nbsp;Hoo&nbsp;Studio</h1>
-        <p class="tagline">Owl About that Game.</p>
+        <p class="tagline">Owl About that Idea.</p>
         <div class="scroll-indicator">
             <span>Scroll to explore</span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -115,28 +115,13 @@
     </div>
     </section>
 
-    <!-- Game Advertisement Section -->
-    <section id="projects" class="section ad-section grid-section-wrapper" data-scroll-section>
-        <canvas id="grid-canvas" class="grid-background"></canvas>
-        <div class="container ad-container">
-            <div class="ad-text" data-scroll-fade-up>
-                <h2>Give a Hoot: Grid Nite!</h2>
-                <p>A cozy night‑owl puzzler with smooth loops and satisfying snaps. Give it a hoot on the App Store.</p>
-            </div>
-            <div class="ad-badges" data-scroll-fade-up data-delay="100">
-                <!-- App Store badge -->
-                <a href="https://apps.apple.com/us/app/grid-nite/id6749193485" target="_blank" rel="noopener">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                         alt="Download on the App Store" class="store-badge">
-                </a>
-                <!-- (Optional) Google Play badge -->
-                <!--
-                <a href="https://play.google.com/store/apps/details?id=YOUR.GAME.PACKAGE" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                         alt="Get it on Google Play" class="store-badge">
-                </a>
-                -->
-            </div>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section" data-scroll-section>
+        <div class="container">
+            <h2 class="section-title" data-scroll-fade-up>Projects</h2>
+
+            <!-- Projects Grid - populated dynamically -->
+            <div id="projects-grid" class="projects-grid" data-scroll-fade-up data-delay="100"></div>
         </div>
     </section>
 
@@ -145,7 +130,7 @@
     <section id="about" class="section" data-scroll-section>
         <div class="container content">
             <h2 data-scroll-fade-up>About Us</h2>
-            <p data-scroll-fade-up data-delay="100">Hoo are we? A tiny roost of night‑owls crafting playful little worlds. We ship small, polish hard, and chase that quiet whoa—soft landings, smooth loops, and moments that make you hoot.</p>
+            <p data-scroll-fade-up data-delay="100">Hoo are we? A tiny roost of night-owls crafting playful little worlds and hopping into creative jams for culturally rooted, public-interest projects. We ship small, polish hard, and chase that quiet whoa - big ideas, oddball experiments, and work that does some good.</p>
         </div>
     </section>
 
@@ -165,12 +150,12 @@
                 <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
                     <i class="fa-brands fa-youtube"></i>
                 </a>
-                <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord">
+                <a href="https://discord.gg/RjFud8SMNr" target="_blank" rel="noopener" aria-label="Discord">
                     <i class="fa-brands fa-discord"></i>
                 </a>
             </div>
             <div class="footer-text">
-                <p>&copy; 2025 Hoo Hoo Studio. All rights reserved.</p>
+                <p>&copy; <span id="copyright-year">2025</span> Hoo Hoo Studio. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -212,6 +197,15 @@
                   'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'USD' },
                   'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '5', 'reviewCount': '12' },
                   'url': 'https://apps.apple.com/us/app/grid-nite/id6749193485'
+                },
+                {
+                  '@type': 'SoftwareApplication',
+                  'name': 'Smooj',
+                  'operatingSystem': 'iOS',
+                  'applicationCategory': 'LifestyleApplication',
+                  'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'USD' },
+                  'description': 'Send love through iMessage. Track and celebrate the little moments of appreciation in your relationship.',
+                  'url': 'https://apps.apple.com/app/id6758178218'
                 }
               ]
             };
@@ -418,230 +412,81 @@
                 });
             }
 
-            // Grid Nite animated background - "Lights Out" style
-            const canvas = document.getElementById('grid-canvas');
-            const adSection = document.querySelector('.ad-section');
-
-            if (canvas && adSection) {
-                const ctx = canvas.getContext('2d');
-                let animationId;
-
-                // Grid configuration - maintain square aspect ratio
-                const gridSize = 60; // Size of each cell in pixels
-                let cols, rows;
-
-                function calculateGridDimensions() {
-                    const adRect = adSection.getBoundingClientRect();
-                    const adHeight = Math.max(adRect.height, adSection.scrollHeight);
-
-                    // Add extra cells to ensure full coverage even with gaps
-                    cols = Math.ceil(adRect.width / gridSize) + 2;
-                    rows = Math.ceil(adHeight / gridSize) + 2;
-                }
-
-                calculateGridDimensions();
-
-                // Initialize grid state (0 = off, 1 = on) with 50% entropy
-                let grid = Array(rows).fill().map(() =>
-                    Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
-                );
-                let targetGrid = Array(rows).fill().map(() =>
-                    Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
-                );
-                // Track flash state for transition effect
-                let flashGrid = Array(rows).fill().map(() => Array(cols).fill(0));
-
-                // Resize canvas - set internal resolution to match display size
-                function resizeCanvas() {
-                    const adRect = adSection.getBoundingClientRect();
-                    const adHeight = Math.max(adRect.height, adSection.scrollHeight);
-
-                    // Store old dimensions
-                    const oldRows = rows;
-                    const oldCols = cols;
-
-                    // Set canvas internal resolution to match CSS size
-                    canvas.width = adRect.width;
-                    canvas.height = adHeight;
-                    // No CSS scaling needed - 1:1 pixel mapping
-                    canvas.style.width = adRect.width + 'px';
-                    canvas.style.height = adHeight + 'px';
-
-                    // Recalculate grid dimensions with new height
-                    calculateGridDimensions();
-
-                    // Reinitialize grids if dimensions changed
-                    if (rows !== oldRows || cols !== oldCols) {
-                        grid = Array(rows).fill().map(() =>
-                            Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
-                        );
-                        targetGrid = Array(rows).fill().map(() =>
-                            Array(cols).fill().map(() => Math.random() > 0.5 ? 1 : 0)
-                        );
-                        flashGrid = Array(rows).fill().map(() => Array(cols).fill(0));
+            // Projects data - published apps
+            function getProjectsData() {
+                return [
+                    {
+                        name: 'Grid Nite',
+                        category: 'apps',
+                        description: 'Master combinatorics puzzles in this calm logic challenge. Tap tiles to toggle lights in a 5×5 grid—turn off all the lights! Inspired by the classic Lights Out puzzle with 100+ levels, daily challenges, and achievements. A cozy puzzler with smooth loops and satisfying snaps.',
+                        image: 'img/gridnite_preview.mp4',
+                        links: {
+                            'App Store': 'https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485'
+                        },
+                        featured: true
+                    },
+                    {
+                        name: 'Smooj',
+                        category: 'apps',
+                        description: 'Send love through iMessage. A playful way to track and celebrate the little moments of appreciation in your relationship. Pick an action, add some hearts, and watch your connection grow with beautiful insights and summaries.',
+                        image: 'img/smooj_preview.svg',
+                        links: {
+                            'App Store': 'https://apps.apple.com/app/id6758178218'
+                        },
+                        featured: true
                     }
-                }
-                resizeCanvas();
-
-                // Toggle cell and neighbors (Lights Out pattern)
-                function toggleCell(row, col) {
-                    const positions = [
-                        [row, col],       // center
-                        [row - 1, col],   // top
-                        [row + 1, col],   // bottom
-                        [row, col - 1],   // left
-                        [row, col + 1]    // right
-                    ];
-
-                    positions.forEach(([r, c]) => {
-                        if (r >= 0 && r < rows && c >= 0 && c < cols) {
-                            targetGrid[r][c] = 1 - targetGrid[r][c]; // Toggle
-                            flashGrid[r][c] = 1; // Trigger flash effect
-                        }
-                    });
-                }
-
-                // Randomly trigger toggles for organic animation
-                function randomToggle() {
-                    const row = Math.floor(Math.random() * rows);
-                    const col = Math.floor(Math.random() * cols);
-                    toggleCell(row, col);
-                }
-
-                // Smooth interpolation between current and target state
-                function updateGrid() {
-                    for (let r = 0; r < rows; r++) {
-                        // Safety check for array bounds
-                        if (!grid[r] || !targetGrid[r] || !flashGrid[r]) continue;
-
-                        for (let c = 0; c < cols; c++) {
-                            // Safety check for array bounds
-                            if (grid[r][c] === undefined || targetGrid[r][c] === undefined) continue;
-
-                            const diff = targetGrid[r][c] - grid[r][c];
-                            grid[r][c] += diff * 0.05; // Smooth transition
-
-                            // Decay flash effect slowly
-                            if (flashGrid[r][c] > 0) {
-                                flashGrid[r][c] -= 0.02; // Slow fade
-                                if (flashGrid[r][c] < 0) flashGrid[r][c] = 0;
-                            }
-                        }
-                    }
-                }
-
-                // Draw the grid with rounded corners and uniform angled gradient
-                let cachedGradient = null;
-                let lastCanvasWidth = 0;
-                let lastCanvasHeight = 0;
-
-                function drawGrid() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    const gap = 2;
-                    const radius = 8;
-
-                    // Cache gradient if canvas size hasn't changed
-                    if (!cachedGradient || lastCanvasWidth !== canvas.width || lastCanvasHeight !== canvas.height) {
-                        cachedGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-                        cachedGradient.addColorStop(0, 'rgba(255, 70, 85, 0.35)');
-                        cachedGradient.addColorStop(0.5, 'rgba(255, 70, 85, 0.25)');
-                        cachedGradient.addColorStop(1, 'rgba(255, 70, 85, 0.15)');
-                        lastCanvasWidth = canvas.width;
-                        lastCanvasHeight = canvas.height;
-                    }
-
-                    // Draw all active squares as masks for the gradient
-                    for (let r = 0; r < rows; r++) {
-                        // Safety check for array bounds
-                        if (!grid[r] || !flashGrid[r]) continue;
-
-                        for (let c = 0; c < cols; c++) {
-                            // Safety check for array bounds
-                            if (grid[r][c] === undefined) continue;
-
-                            const opacity = grid[r][c];
-                            const flash = flashGrid[r][c];
-
-                            if (opacity > 0.01 || flash > 0.01) {
-                                // Calculate position - use gridSize directly (60px)
-                                const x = c * gridSize + gap;
-                                const y = r * gridSize + gap;
-                                const size = gridSize - gap * 2; // 56px square
-
-                                // Combine opacity with flash (flash adds brightness)
-                                const finalOpacity = Math.min(1, opacity + flash * 0.6);
-                                ctx.globalAlpha = finalOpacity;
-
-                                // Draw filled rounded SQUARE (width = height = size)
-                                // Use brighter color when flashing
-                                if (flash > 0.1) {
-                                    // Flash with bright white-ish red
-                                    const flashColor = `rgba(255, ${100 + Math.floor(flash * 155)}, ${100 + Math.floor(flash * 155)}, 1)`;
-                                    ctx.fillStyle = flashColor;
-                                } else {
-                                    ctx.fillStyle = cachedGradient;
-                                }
-
-                                ctx.beginPath();
-                                ctx.roundRect(x, y, size, size, radius);
-                                ctx.fill();
-
-                                // Draw subtle border (only if needed for performance)
-                                if (finalOpacity > 0.05) {
-                                    ctx.strokeStyle = flash > 0.1 ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 70, 85, 0.2)';
-                                    ctx.lineWidth = 1;
-                                    ctx.beginPath();
-                                    ctx.roundRect(x, y, size, size, radius);
-                                    ctx.stroke();
-                                }
-                            }
-                        }
-                    }
-
-                    // Reset global alpha
-                    ctx.globalAlpha = 1;
-                }
-
-                // Animation loop
-                let lastToggle = 0;
-                function animate(timestamp) {
-                    // Trigger random toggles every 800-1500ms
-                    if (timestamp - lastToggle > 800 + Math.random() * 700) {
-                        randomToggle();
-                        lastToggle = timestamp;
-                    }
-
-                    updateGrid();
-                    drawGrid();
-                    animationId = requestAnimationFrame(animate);
-                }
-
-                // Start animation when section is in view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            if (!animationId) animate(0);
-                        } else {
-                            if (animationId) {
-                                cancelAnimationFrame(animationId);
-                                animationId = null;
-                            }
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                observer.observe(adSection);
-
-                // Handle window resize with debounce for efficiency
-                let resizeTimeout;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimeout);
-                    resizeTimeout = setTimeout(() => {
-                        resizeCanvas();
-                    }, 150); // Debounce resize events
-                }, { passive: true });
+                ];
             }
+
+            // Load and render projects
+            function loadProjects() {
+                const projects = getProjectsData();
+                renderProjects(projects);
+            }
+
+            function renderProjects(projects) {
+                const grid = document.getElementById('projects-grid');
+                if (!grid) return;
+
+                grid.innerHTML = projects.map(project => {
+                    const isVideo = project.image && project.image.endsWith('.mp4');
+                    const primaryLink = Object.values(project.links)[0] || '#';
+                    const isClickable = primaryLink !== '#';
+                    const isExternal = primaryLink.startsWith('http');
+                    const clickAction = isExternal ? `window.open('${primaryLink}', '_blank')` : `window.location.href='${primaryLink}'`;
+
+                    return `
+                    <div class="project-card ${isClickable ? 'clickable' : ''}" data-category="${project.category}" ${isClickable ? `onclick="${clickAction}"` : ''}>
+                        ${project.image ? `
+                            <div class="project-image">
+                                ${isVideo ? `
+                                    <video src="${project.image}" alt="${project.name}" autoplay loop muted playsinline preload="auto" onloadstart="console.log('Video loading: ${project.image}')" onerror="console.error('Video failed to load: ${project.image}'); this.style.display='none';"></video>
+                                ` : `
+                                    <img src="${project.image}" alt="${project.name}" loading="lazy" onload="console.log('Image loaded: ${project.image}')" onerror="console.error('Image failed to load: ${project.image}'); this.style.display='none';" />
+                                `}
+                            </div>
+                        ` : `<div class="project-image"></div>`}
+                        <div class="project-content">
+                            <h3 class="project-title">${project.name}</h3>
+                            <p class="project-description">${project.description}</p>
+                        </div>
+                    </div>
+                `;}).join('');
+
+                // Add scroll animation to newly rendered cards
+                setTimeout(() => {
+                    document.querySelectorAll('.project-card').forEach(card => {
+                        card.classList.add('visible');
+                    });
+                }, 100);
+            }
+
+            // Initialize projects
+            loadProjects();
+
+            // Auto-update copyright year
+            const yearEl = document.getElementById('copyright-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
         });
     </script>
 </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoo&nbsp;Hoo Studio</title>
+    <title>Support — Hoo Hoo Studio</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Main stylesheet -->
@@ -49,7 +49,7 @@
       }
       input:focus, select:focus, textarea:focus {
         outline: none;
-        border-color: var(--accent-color);
+        border-image: linear-gradient(90deg, #ff3366, #33ddff, #aa33ff, #ff3366) 1;
         background: var(--background-color);
       }
       textarea {
@@ -61,15 +61,22 @@
         padding: 0.75rem 2rem;
         border-radius: 0.5rem;
         border: none;
-        background: var(--accent-color);
+        background: linear-gradient(90deg, #ff3366, #ff6b35, #ffc233, #33ff77, #33ddff, #3366ff, #aa33ff, #ff33aa, #ff3366);
+        background-size: 300% 100%;
         color: var(--primary-color);
         font-weight: 600;
         cursor: pointer;
-        transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+        transition: transform var(--transition-speed) ease;
+        animation: borealis-flow 8s ease-in-out infinite;
+      }
+      @keyframes borealis-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
       .btn:hover {
-        background: var(--accent-hover);
         transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 40px rgba(51, 221, 255, 0.3);
       }
       .btn[disabled] {
         opacity: 0.5;
@@ -137,8 +144,12 @@
               <div id="errEmail" class="error">Enter a valid email address.</div>
             </div>
             <div>
-              <label for="game" class="req">Game</label>
-              <input id="game" type="text" value="Grid Nite" required>
+              <label for="app" class="req">App</label>
+              <select id="app" required>
+                <option value="">Select an app...</option>
+                <option value="Grid Nite">Grid Nite</option>
+                <option value="Smooj">Smooj</option>
+              </select>
             </div>
             <div>
               <label for="device" class="req">Device Model</label>
@@ -173,7 +184,7 @@
       document.getElementById('supportForm').addEventListener('submit', function(e){
         e.preventDefault();
         const email = document.getElementById('respEmail').value.trim();
-        const game = document.getElementById('game').value.trim();
+        const app = document.getElementById('app').value.trim();
         const device = document.getElementById('device').value.trim();
         const ios = document.getElementById('ios').value.trim();
         const appv = document.getElementById('appv').value.trim();
@@ -183,12 +194,12 @@
         if(!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
           document.getElementById('errEmail').style.display='block'; return;
         } else { document.getElementById('errEmail').style.display='none'; }
-        if(!game || !device || !ios || !appv || !desc) return;
+        if(!app || !device || !ios || !appv || !desc) return;
         if(!captchaResponse){ document.getElementById('errCaptcha').style.display='block'; return; }
         document.getElementById('errCaptcha').style.display='none';
 
-        const subject = 'Support Request';
-        const body = `Response Email: ${email}\nGame: ${game}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;
+        const subject = `Support Request - ${app}`;
+        const body = `Response Email: ${email}\nApp: ${app}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;
         window.location.href = `mailto:support@hoohoo.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         document.getElementById('formOk').style.display='block';
       });
@@ -203,8 +214,9 @@
                 <a href="#support">Support</a>
             </div>
             <div class="footer-text">
-                <p>&copy; 2025 Hoo Hoo Studio. All rights reserved.</p>
+                <p>&copy; <span id="copyright-year">2025</span> Hoo Hoo Studio. All rights reserved.</p>
             </div>
+            <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
         </div>
     </footer>
 </body>

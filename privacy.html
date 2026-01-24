@@ -62,8 +62,18 @@
       font-size: 0.95rem;
     }
     .toc a:hover {
-      color: var(--primary-color);
+      background: linear-gradient(90deg, #ff3366, #ff6b35, #ffc233, #33ff77, #33ddff, #3366ff, #aa33ff, #ff33aa, #ff3366);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: borealis-flow 8s ease-in-out infinite;
       padding-left: 0.5rem;
+    }
+    @keyframes borealis-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     .privacy-section {
       margin-bottom: 3rem;
@@ -104,7 +114,12 @@
       color: var(--accent-color);
     }
     .privacy-section a:hover {
-      color: var(--accent-hover);
+      background: linear-gradient(90deg, #ff3366, #ff6b35, #ffc233, #33ff77, #33ddff, #3366ff, #aa33ff, #ff33aa, #ff3366);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: borealis-flow 8s ease-in-out infinite;
     }
     address {
       font-style: normal;

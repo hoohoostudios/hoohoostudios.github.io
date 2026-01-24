@@ -1,0 +1,171 @@
+<svg viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Pink gradient background -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9EC4"/>
+      <stop offset="50%" style="stop-color:#FF6B9D"/>
+      <stop offset="100%" style="stop-color:#E85A8A"/>
+    </linearGradient>
+    <!-- Soft glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Heart shape -->
+    <path id="heart" d="M0 -8 C-4 -14, -14 -14, -14 -4 C-14 6, 0 16, 0 16 C0 16, 14 6, 14 -4 C14 -14, 4 -14, 0 -8"/>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="360" fill="url(#bg)"/>
+
+  <!-- Subtle vignette -->
+  <ellipse cx="320" cy="180" rx="400" ry="250" fill="white" opacity="0.08"/>
+
+  <style>
+    .heart { fill: white; filter: url(#glow); }
+
+    /* Floating up animation - different speeds for parallax */
+    @keyframes float-up-slow {
+      0% { transform: translateY(380px); opacity: 0; }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
+      100% { transform: translateY(-40px); opacity: 0; }
+    }
+    @keyframes float-up-med {
+      0% { transform: translateY(380px); opacity: 0; }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
+      100% { transform: translateY(-40px); opacity: 0; }
+    }
+    @keyframes float-up-fast {
+      0% { transform: translateY(380px); opacity: 0; }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
+      100% { transform: translateY(-40px); opacity: 0; }
+    }
+
+    /* Pulsing animation */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* Combined animations via groups */
+    .col1 { animation: float-up-slow 6s linear infinite; }
+    .col2 { animation: float-up-med 5s linear infinite; }
+    .col3 { animation: float-up-fast 4s linear infinite; }
+    .col4 { animation: float-up-slow 5.5s linear infinite; }
+    .col5 { animation: float-up-med 4.5s linear infinite; }
+    .col6 { animation: float-up-fast 5s linear infinite; }
+    .col7 { animation: float-up-slow 4.8s linear infinite; }
+    .col8 { animation: float-up-med 5.2s linear infinite; }
+
+    .pulse { animation: pulse 1.5s ease-in-out infinite; }
+    .pulse-slow { animation: pulse 2s ease-in-out infinite; }
+    .pulse-fast { animation: pulse 1s ease-in-out infinite; }
+  </style>
+
+  <!-- Matrix-style columns of rising hearts -->
+
+  <!-- Column 1 -->
+  <g class="col1" style="animation-delay: 0s;">
+    <use href="#heart" class="heart pulse" x="50" y="0" opacity="0.9" transform="scale(1.2)"/>
+  </g>
+  <g class="col1" style="animation-delay: -2s;">
+    <use href="#heart" class="heart pulse-slow" x="50" y="0" opacity="0.6" transform="scale(0.8)"/>
+  </g>
+  <g class="col1" style="animation-delay: -4s;">
+    <use href="#heart" class="heart pulse-fast" x="50" y="0" opacity="0.4" transform="scale(0.6)"/>
+  </g>
+
+  <!-- Column 2 -->
+  <g class="col2" style="animation-delay: -0.5s;">
+    <use href="#heart" class="heart pulse-slow" x="120" y="0" opacity="0.8" transform="scale(1.0)"/>
+  </g>
+  <g class="col2" style="animation-delay: -2.5s;">
+    <use href="#heart" class="heart pulse" x="120" y="0" opacity="0.5" transform="scale(0.7)"/>
+  </g>
+  <g class="col2" style="animation-delay: -4.2s;">
+    <use href="#heart" class="heart pulse-fast" x="120" y="0" opacity="0.3" transform="scale(0.5)"/>
+  </g>
+
+  <!-- Column 3 -->
+  <g class="col3" style="animation-delay: -1s;">
+    <use href="#heart" class="heart pulse-fast" x="190" y="0" opacity="0.95" transform="scale(1.4)"/>
+  </g>
+  <g class="col3" style="animation-delay: -2.2s;">
+    <use href="#heart" class="heart pulse" x="190" y="0" opacity="0.6" transform="scale(0.9)"/>
+  </g>
+  <g class="col3" style="animation-delay: -3.5s;">
+    <use href="#heart" class="heart pulse-slow" x="190" y="0" opacity="0.35" transform="scale(0.55)"/>
+  </g>
+
+  <!-- Column 4 (center-left) -->
+  <g class="col4" style="animation-delay: -0.3s;">
+    <use href="#heart" class="heart pulse" x="260" y="0" opacity="1" transform="scale(1.6)"/>
+  </g>
+  <g class="col4" style="animation-delay: -2.8s;">
+    <use href="#heart" class="heart pulse-slow" x="260" y="0" opacity="0.7" transform="scale(1.1)"/>
+  </g>
+  <g class="col4" style="animation-delay: -4.5s;">
+    <use href="#heart" class="heart pulse-fast" x="260" y="0" opacity="0.4" transform="scale(0.7)"/>
+  </g>
+
+  <!-- Column 5 (center) -->
+  <g class="col5" style="animation-delay: 0s;">
+    <use href="#heart" class="heart pulse-slow" x="330" y="0" opacity="1" transform="scale(1.8)"/>
+  </g>
+  <g class="col5" style="animation-delay: -1.5s;">
+    <use href="#heart" class="heart pulse" x="330" y="0" opacity="0.75" transform="scale(1.2)"/>
+  </g>
+  <g class="col5" style="animation-delay: -3s;">
+    <use href="#heart" class="heart pulse-fast" x="330" y="0" opacity="0.5" transform="scale(0.8)"/>
+  </g>
+  <g class="col5" style="animation-delay: -4s;">
+    <use href="#heart" class="heart pulse" x="330" y="0" opacity="0.3" transform="scale(0.5)"/>
+  </g>
+
+  <!-- Column 6 (center-right) -->
+  <g class="col6" style="animation-delay: -0.8s;">
+    <use href="#heart" class="heart pulse-fast" x="400" y="0" opacity="0.95" transform="scale(1.5)"/>
+  </g>
+  <g class="col6" style="animation-delay: -2.3s;">
+    <use href="#heart" class="heart pulse" x="400" y="0" opacity="0.65" transform="scale(1.0)"/>
+  </g>
+  <g class="col6" style="animation-delay: -4.1s;">
+    <use href="#heart" class="heart pulse-slow" x="400" y="0" opacity="0.35" transform="scale(0.6)"/>
+  </g>
+
+  <!-- Column 7 -->
+  <g class="col7" style="animation-delay: -1.2s;">
+    <use href="#heart" class="heart pulse" x="470" y="0" opacity="0.85" transform="scale(1.3)"/>
+  </g>
+  <g class="col7" style="animation-delay: -3.2s;">
+    <use href="#heart" class="heart pulse-slow" x="470" y="0" opacity="0.55" transform="scale(0.85)"/>
+  </g>
+  <g class="col7" style="animation-delay: -4.8s;">
+    <use href="#heart" class="heart pulse-fast" x="470" y="0" opacity="0.3" transform="scale(0.5)"/>
+  </g>
+
+  <!-- Column 8 -->
+  <g class="col8" style="animation-delay: -0.6s;">
+    <use href="#heart" class="heart pulse-slow" x="540" y="0" opacity="0.9" transform="scale(1.1)"/>
+  </g>
+  <g class="col8" style="animation-delay: -2.6s;">
+    <use href="#heart" class="heart pulse-fast" x="540" y="0" opacity="0.5" transform="scale(0.75)"/>
+  </g>
+  <g class="col8" style="animation-delay: -4.4s;">
+    <use href="#heart" class="heart pulse" x="540" y="0" opacity="0.25" transform="scale(0.45)"/>
+  </g>
+
+  <!-- Column 9 (far right) -->
+  <g class="col3" style="animation-delay: -1.8s;">
+    <use href="#heart" class="heart pulse" x="600" y="0" opacity="0.7" transform="scale(0.9)"/>
+  </g>
+  <g class="col3" style="animation-delay: -3.8s;">
+    <use href="#heart" class="heart pulse-slow" x="600" y="0" opacity="0.4" transform="scale(0.6)"/>
+  </g>
+</svg>
