@@ -1,223 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — Hoo Hoo Studio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/owl.svg">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <style>
-      .support-card {
-        max-width: 760px;
-        margin: 0 auto;
-        background: var(--surface-color);
-        border: 1px solid var(--border-color);
-        border-radius: 1rem;
-        padding: 2.5rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-      form.support {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem 1rem;
-      }
-      form.support .full {
-        grid-column: 1 / -1;
-      }
-      label {
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: var(--primary-color);
-        display: block;
-        margin-bottom: 0.5rem;
-      }
-      input, select, textarea {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-        border: 1px solid var(--border-color);
-        background: var(--surface-elevated);
-        color: var(--primary-color);
-        font: inherit;
-        transition: border-color var(--transition-speed) ease, background var(--transition-speed) ease;
-      }
-      input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-image: linear-gradient(90deg, #ff3366, #33ddff, #aa33ff, #ff3366) 1;
-        background: var(--background-color);
-      }
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-      .btn {
-        display: inline-block;
-        padding: 0.75rem 2rem;
-        border-radius: 0.5rem;
-        border: none;
-        background: linear-gradient(90deg, #ff3366, #ff6b35, #ffc233, #33ff77, #33ddff, #3366ff, #aa33ff, #ff33aa, #ff3366);
-        background-size: 300% 100%;
-        color: var(--primary-color);
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform var(--transition-speed) ease;
-        animation: borealis-flow 8s ease-in-out infinite;
-      }
-      @keyframes borealis-flow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(255, 51, 102, 0.4), 0 0 40px rgba(51, 221, 255, 0.3);
-      }
-      .btn[disabled] {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-      }
-      .error {
-        color: var(--accent-color);
-        font-size: 0.9rem;
-        display: none;
-        margin-top: 0.5rem;
-      }
-      .success {
-        color: #22c55e;
-        font-size: 0.95rem;
-        display: none;
-        margin-top: 1rem;
-      }
-      .req::after {
-        content: " *";
-        color: var(--accent-color);
-      }
-      noscript {
-        color: var(--accent-color);
-        font-weight: 600;
-      }
-      .section.pt-20 {
-        padding-top: 8rem;
-      }
-      #support h2 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
-      }
-      #support > .container > p {
-        color: var(--secondary-color);
-        font-size: 1.1rem;
-        margin-bottom: 2.5rem;
-      }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support — Hoo Hoo Studio</title>
+  <meta name="description" content="Get support for Hoo Hoo Studio apps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/owl.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <header id="header">
-        <div class="container nav-container">
-            <a href="index.html" class="brand">
-                <img src="img/owl.svg" alt="Hoo Hoo Studio logo" class="logo">
-                <span>Hoo&nbsp;Hoo&nbsp;Studio</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#support">Support</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="img/owl.svg" alt="Hoo Hoo Studio logo" class="logo">
+        <span>Hoo&nbsp;Hoo&nbsp;Studio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+  </header>
 
-    <section id="support" class="section pt-20">
-      <div class="container content">
-        <h2>Support</h2>
-        <p>Fill in all required fields and complete the CAPTCHA before sending your request.</p>
-        <div class="support-card">
-          <form id="supportForm" class="support" novalidate>
-            <div class="full">
-              <label for="respEmail" class="req">Response Email</label>
-              <input id="respEmail" type="email" required>
-              <div id="errEmail" class="error">Enter a valid email address.</div>
-            </div>
-            <div>
-              <label for="app" class="req">App</label>
-              <select id="app" required>
-                <option value="">Select an app...</option>
-                <option value="Grid Nite">Grid Nite</option>
-                <option value="Smooj">Smooj</option>
-              </select>
-            </div>
-            <div>
-              <label for="device" class="req">Device Model</label>
-              <input id="device" type="text" required>
-            </div>
-            <div>
-              <label for="ios" class="req">iOS Version</label>
-              <input id="ios" type="text" required>
-            </div>
-            <div>
-              <label for="appv" class="req">App Version</label>
-              <input id="appv" type="text" required>
-            </div>
-            <div class="full">
-              <label for="desc" class="req">Description of Issue</label>
-              <textarea id="desc" required></textarea>
-            </div>
-            <div class="full">
-              <div class="g-recaptcha" data-sitekey="6LeUiaMrAAAAAJ9rftmTzJhTWoMcjsKQ4UfkH13g"></div>
-              <div id="errCaptcha" class="error">Please complete the CAPTCHA.</div>
-            </div>
-            <div class="full">
-              <button id="sendBtn" type="submit" class="btn">Send Support Email</button>
-              <div id="formOk" class="success">Opening your email client…</div>
-            </div>
-          </form>
-        </div>
+  <section id="support" class="section support-page">
+    <div class="container content">
+      <h2>Support</h2>
+      <p>Fill in all required fields and complete the CAPTCHA before sending your request.</p>
+      <div class="support-card">
+        <form id="supportForm" class="support" novalidate>
+          <div class="full">
+            <label for="respEmail" class="req">Response Email</label>
+            <input id="respEmail" type="email" required>
+            <div id="errEmail" class="form-error">Enter a valid email address.</div>
+          </div>
+          <div>
+            <label for="app" class="req">App</label>
+            <select id="app" required>
+              <option value="">Select an app...</option>
+              <option value="Grid Nite">Grid Nite</option>
+              <option value="Smooj">Smooj</option>
+            </select>
+          </div>
+          <div>
+            <label for="device" class="req">Device Model</label>
+            <input id="device" type="text" required>
+          </div>
+          <div>
+            <label for="ios" class="req">iOS Version</label>
+            <input id="ios" type="text" required>
+          </div>
+          <div>
+            <label for="appv" class="req">App Version</label>
+            <input id="appv" type="text" required>
+          </div>
+          <div class="full">
+            <label for="desc" class="req">Description of Issue</label>
+            <textarea id="desc" required></textarea>
+          </div>
+          <div class="full">
+            <div class="g-recaptcha" data-sitekey="6LeUiaMrAAAAAJ9rftmTzJhTWoMcjsKQ4UfkH13g"></div>
+            <div id="errCaptcha" class="form-error">Please complete the CAPTCHA.</div>
+          </div>
+          <div class="full">
+            <button id="sendBtn" type="submit" class="btn">Send Support Email</button>
+            <div id="formOk" class="form-success">Opening your email client…</div>
+          </div>
+        </form>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <script>
-      document.getElementById('supportForm').addEventListener('submit', function(e){
-        e.preventDefault();
-        const email = document.getElementById('respEmail').value.trim();
-        const app = document.getElementById('app').value.trim();
-        const device = document.getElementById('device').value.trim();
-        const ios = document.getElementById('ios').value.trim();
-        const appv = document.getElementById('appv').value.trim();
-        const desc = document.getElementById('desc').value.trim();
-        const captchaResponse = (window.grecaptcha && window.grecaptcha.getResponse) ? window.grecaptcha.getResponse() : '';
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="#support">Support</a>
+      </div>
+      <div class="footer-text">
+        <p>&copy; <span id="copyright-year"></span> Hoo Hoo Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-        if(!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
-          document.getElementById('errEmail').style.display='block'; return;
-        } else { document.getElementById('errEmail').style.display='none'; }
-        if(!app || !device || !ios || !appv || !desc) return;
-        if(!captchaResponse){ document.getElementById('errCaptcha').style.display='block'; return; }
-        document.getElementById('errCaptcha').style.display='none';
+  <script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-        const subject = `Support Request - ${app}`;
-        const body = `Response Email: ${email}\nApp: ${app}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;
-        window.location.href = `mailto:support@hoohoo.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        document.getElementById('formOk').style.display='block';
-      });
-    </script>
+    document.getElementById('supportForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('respEmail').value.trim();
+      const app = document.getElementById('app').value.trim();
+      const device = document.getElementById('device').value.trim();
+      const ios = document.getElementById('ios').value.trim();
+      const appv = document.getElementById('appv').value.trim();
+      const desc = document.getElementById('desc').value.trim();
+      const captchaResponse = (window.grecaptcha && window.grecaptcha.getResponse) ? window.grecaptcha.getResponse() : '';
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="#support">Support</a>
-            </div>
-            <div class="footer-text">
-                <p>&copy; <span id="copyright-year">2025</span> Hoo Hoo Studio. All rights reserved.</p>
-            </div>
-            <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
-        </div>
-    </footer>
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        document.getElementById('errEmail').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('errEmail').style.display = 'none';
+      }
+
+      if (!app || !device || !ios || !appv || !desc) return;
+
+      if (!captchaResponse) {
+        document.getElementById('errCaptcha').style.display = 'block';
+        return;
+      }
+      document.getElementById('errCaptcha').style.display = 'none';
+
+      const subject = `Support Request - ${app}`;
+      const body = `Response Email: ${email}\nApp: ${app}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;
+      window.location.href = `mailto:support@hoohoo.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      document.getElementById('formOk').style.display = 'block';
+    });
+  </script>
 </body>
 </html>
