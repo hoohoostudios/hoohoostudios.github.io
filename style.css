@@ -367,6 +367,14 @@ a:hover {
     opacity: 1;
 }
 
+/* Touch device support - show effects on tap */
+@media (hover: none) {
+    .project-card:active::before,
+    .project-card.touched::before {
+        opacity: 1;
+    }
+}
+
 /* Inner glow layer */
 .project-card::after {
     content: '';
@@ -390,6 +398,19 @@ a:hover {
         0 0 20px rgba(255, 51, 102, 0.3),
         0 0 40px rgba(51, 221, 255, 0.2),
         0 0 60px rgba(170, 51, 255, 0.15);
+}
+
+/* Touch device support - show effects on tap */
+@media (hover: none) {
+    .project-card:active,
+    .project-card.touched {
+        transform: translateY(-4px);
+        border-color: transparent;
+        box-shadow:
+            0 0 20px rgba(255, 51, 102, 0.3),
+            0 0 40px rgba(51, 221, 255, 0.2),
+            0 0 60px rgba(170, 51, 255, 0.15);
+    }
 }
 
 .project-image {
@@ -420,6 +441,14 @@ a:hover {
     opacity: 1;
 }
 
+/* Touch device support */
+@media (hover: none) {
+    .project-card:active .project-image::after,
+    .project-card.touched .project-image::after {
+        opacity: 1;
+    }
+}
+
 .project-image img,
 .project-image video {
     width: 100%;
@@ -434,6 +463,16 @@ a:hover {
 .project-card:hover .project-image img,
 .project-card:hover .project-image video {
     transform: scale(1.05);
+}
+
+/* Touch device support */
+@media (hover: none) {
+    .project-card:active .project-image img,
+    .project-card:active .project-image video,
+    .project-card.touched .project-image img,
+    .project-card.touched .project-image video {
+        transform: scale(1.05);
+    }
 }
 
 /* Placeholder for missing images */

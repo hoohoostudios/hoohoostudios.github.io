@@ -480,6 +480,19 @@
                         card.classList.add('visible');
                     });
                 }, 100);
+
+                // Touch support for mobile - add touched class on tap for animation
+                if ('ontouchstart' in window) {
+                    document.querySelectorAll('.project-card').forEach(card => {
+                        card.addEventListener('touchstart', function() {
+                            this.classList.add('touched');
+                        }, { passive: true });
+                        card.addEventListener('touchend', function() {
+                            const el = this;
+                            setTimeout(() => el.classList.remove('touched'), 300);
+                        }, { passive: true });
+                    });
+                }
             }
 
             // Initialize projects
