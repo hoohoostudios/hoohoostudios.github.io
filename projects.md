@@ -15,7 +15,7 @@
 - **Description**: Bring a half-formed idea and we will riff on design, art direction, and story for games, brands, environments, and culturally rooted projects. Experimental, modern, and public-minded.
 - **Image**: img/space.jpg
 - **Links**:
-  - Contact: mailto:hello@hoohooStudio.com
+  - Contact: mailto:support@hoohoo.studio
 - **Featured**: false
 
 ## Experimental
