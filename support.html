@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Support — Hoo Hoo Studios</title>
   <meta name="description" content="Get support for Hoo Hoo Studios apps." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="img/owl.svg">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -29,7 +27,7 @@
   <section id="support" class="section support-page">
     <div class="container content">
       <h2>Support</h2>
-      <p>Fill in all required fields and complete the CAPTCHA before sending your request.</p>
+      <p>Fill in all required fields and we'll open your email client with the details filled in.</p>
       <div class="support-card">
         <form id="supportForm" class="support" novalidate>
           <div class="full">
@@ -61,12 +59,17 @@
             <label for="desc" class="req">Description of Issue</label>
             <textarea id="desc" required></textarea>
           </div>
-          <div class="full">
-            <div class="g-recaptcha" data-sitekey="6LeUiaMrAAAAAJ9rftmTzJhTWoMcjsKQ4UfkH13g"></div>
-            <div id="errCaptcha" class="form-error">Please complete the CAPTCHA.</div>
+          <!-- Honeypot. Deliberately not display:none — plenty of bots skip
+               fields hidden that way, and the point is that they fill it in.
+               Offscreen, out of the tab order, out of the accessibility tree,
+               so nobody real ever meets it. -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" type="text" tabindex="-1" autocomplete="off">
           </div>
           <div class="full">
             <button id="sendBtn" type="submit" class="btn">Send Support Email</button>
+            <div id="errTiming" class="form-error">Give the form a moment, then send again.</div>
             <div id="formOk" class="form-success">Opening your email client…</div>
           </div>
         </form>
@@ -92,6 +95,10 @@
   <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
+    // Spam resistance without a third party. Nothing here leaves the page.
+    const LOADED_AT = Date.now();
+    const MIN_FILL_MS = 3000;
+
     document.getElementById('supportForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('respEmail').value.trim();
@@ -100,7 +107,10 @@
       const ios = document.getElementById('ios').value.trim();
       const appv = document.getElementById('appv').value.trim();
       const desc = document.getElementById('desc').value.trim();
-      const captchaResponse = (window.grecaptcha && window.grecaptcha.getResponse) ? window.grecaptcha.getResponse() : '';
+
+      // Nobody real can see this field, so anything in it came from a script.
+      // Fails silently — telling a bot why it was caught only helps it.
+      if (document.getElementById('website').value !== '') return;
 
       if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
         document.getElementById('errEmail').style.display = 'block';
@@ -111,11 +121,13 @@
 
       if (!app || !device || !ios || !appv || !desc) return;
 
-      if (!captchaResponse) {
-        document.getElementById('errCaptcha').style.display = 'block';
+      // Six fields in under three seconds is a script, not a person. Recoverable
+      // on purpose: the clock keeps running, so a second click goes through.
+      if (Date.now() - LOADED_AT < MIN_FILL_MS) {
+        document.getElementById('errTiming').style.display = 'block';
         return;
       }
-      document.getElementById('errCaptcha').style.display = 'none';
+      document.getElementById('errTiming').style.display = 'none';
 
       const subject = `Support Request - ${app}`;
       const body = `Response Email: ${email}\nApp: ${app}\nDevice Model: ${device}\niOS Version: ${ios}\nApp Version: ${appv}\nDescription:\n${desc}`;

@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoo&nbsp;Hoo Studios</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Main stylesheet -->
+    <!-- Main stylesheet (Poppins and Instrument Serif are self-hosted in fonts/) -->
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/owl.svg">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     <!-- Meta: Social / SEO -->
-    <meta name="description" content="Hoo Hoo Studios — inventive games and playful creative jams for culturally rooted, public-interest projects.">
+    <meta name="description" content="Hoo Hoo Studios — small apps that run on your device. No accounts, no servers, no data collected.">
     <meta property="og:title" content="Hoo Hoo Studios">
-    <meta property="og:description" content="Inventive games and playful creative jams for culturally rooted, public-interest projects.">
+    <meta property="og:description" content="Small apps that run on your device. No accounts, no servers, no data collected.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Hoo Hoo Studios">
     <meta property="og:url" content="https://hoohoo.studio/">
@@ -27,133 +25,57 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#0A0A0A">
     <link rel="canonical" href="https://hoohoo.studio/">
-    <!-- Preload background video (if present) for faster, smoother start -->
-    <link rel="preload" as="video" href="videos/hoohoo.mp4" type="video/mp4">
 </head>
-<body>
-    <!-- Navigation -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="#" class="brand">
-                <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
-                <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-            </nav>
+<body class="landing-page">
+    <div class="stage">
+        <div class="stage-top">
+            <div class="container">
+                <!-- Not a link: this is the page it would lead to. -->
+                <div class="brand">
+                    <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
+                    <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
+                </div>
+            </div>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="hero" aria-label="Hoo Hoo Studios hero">
-    <!-- Background video - Owl in flight with moonlight -->
-    <video
-        id="hero-video"
-        class="hero-video"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-        aria-hidden="true"
-    >
-        <!--
-        🦉 TO ADD YOUR OWL VIDEO:
+        <main class="stage-mid">
+            <div class="container">
+                <h1 class="lede">Small apps that run on your device<span class="stop">.</span></h1>
+                <p class="sub">No accounts. No servers. No data collected.</p>
 
-        OPTION 1 - Quick Setup (Recommended):
-        ════════════════════════════════════════════════════════════════
-        1. Visit: https://www.pexels.com/search/videos/owl%20flying/
-        2. Find a video you like (look for night/moonlight scenes)
-        3. Click "Free Download" and choose "Full HD" or "4K"
-        4. Create a folder: videos/
-        5. Save the downloaded file as: videos/owl.mp4
-        6. Update line below to: <source src="videos/owl.mp4" type="video/mp4" />
+                <div class="apps">
+                    <a class="app" href="https://apps.apple.com/app/id6758178218">
+                        <img class="app-icon" src="img/icon-smooj.png" alt="" width="44" height="44">
+                        <span><span class="name">Smooj</span><br><span class="what">Send love through iMessage</span></span>
+                        <span class="go" aria-hidden="true">&#8594;</span>
+                    </a>
+                    <a class="app" href="https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485">
+                        <img class="app-icon" src="img/icon-gridnite.png" alt="" width="44" height="44">
+                        <span><span class="name">Grid Nite</span><br><span class="what">A calm lights-out puzzler</span></span>
+                        <span class="go" aria-hidden="true">&#8594;</span>
+                    </a>
+                </div>
+            </div>
+        </main>
 
-        OPTION 2 - Best Free Owl Flying Videos on Pexels:
-        ════════════════════════════════════════════════════════════════
-        Search these terms for cinematic owl footage:
-        - "owl flying slow motion"
-        - "barn owl night"
-        - "owl hunting moonlight"
-        - "snowy owl flight"
-
-        OPTION 3 - Alternative Free Sources:
-        ════════════════════════════════════════════════════════════════
-        - Pixabay: https://pixabay.com/videos/search/owl/
-        - Videvo: https://www.videvo.net/stock-video-footage/owl/
-
-        💡 TIPS:
-        - Choose videos that are 10-30 seconds long
-        - Look for looping footage (similar start/end)
-        - Compress large files with HandBrake or FFmpeg
-        - Target file size: under 15MB for fast loading
-
-        Current status: Using poster image as placeholder
-        -->
-        <source src="videos/hoohoo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-
-    
-
-    <!-- Gradient overlay for text readability -->
-    <div class="overlay" aria-hidden="true"></div>
-
-    <div class="hero-content" data-scroll-fade>
-        <h1 class="hero-title" data-text="Welcome to Hoo&nbsp;Hoo&nbsp;Studios">Welcome to Hoo&nbsp;Hoo&nbsp;Studios</h1>
-        <p class="tagline">Owl About that Idea.</p>
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
+        <div class="stage-bottom">
+            <div class="container utility">
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="mailto:support@hoohoo.studio">Contact</a>
+                <span class="copyright">&copy; <span id="copyright-year">2026</span> Hoo Hoo Studios</span>
+            </div>
+            <div class="chyron" aria-hidden="true">
+                <div class="chyron-track">
+                    <span>Hoo goes there<b class="dot">&middot;</b></span><span>No cookies, not even the good kind<b class="dot">&middot;</b></span><span>We once shipped a 16-megabyte hero video<b class="dot">&middot;</b></span><span>The collective noun for owls is a parliament<b class="dot">&middot;</b></span><span>Awake at an unreasonable hour, as usual<b class="dot">&middot;</b></span><span>This ticker is load-bearing for absolutely nothing<b class="dot">&middot;</b></span><span>Hoo goes there<b class="dot">&middot;</b></span><span>No cookies, not even the good kind<b class="dot">&middot;</b></span><span>We once shipped a 16-megabyte hero video<b class="dot">&middot;</b></span><span>The collective noun for owls is a parliament<b class="dot">&middot;</b></span><span>Awake at an unreasonable hour, as usual<b class="dot">&middot;</b></span><span>This ticker is load-bearing for absolutely nothing<b class="dot">&middot;</b></span>
+                </div>
+            </div>
         </div>
     </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section" data-scroll-section>
-        <div class="container">
-            <h2 class="section-title" data-scroll-fade-up>Projects</h2>
-
-            <!-- Projects Grid - populated dynamically -->
-            <div id="projects-grid" class="projects-grid" data-scroll-fade-up data-delay="100"></div>
-        </div>
-    </section>
-
-
-    <!-- About Section -->
-    <section id="about" class="section" data-scroll-section>
-        <div class="container content">
-            <h2 data-scroll-fade-up>About Us</h2>
-            <p data-scroll-fade-up data-delay="100">Hoo are we? A tiny roost of night-owls crafting playful little worlds and hopping into creative jams for culturally rooted, public-interest projects. We ship small, polish hard, and chase that quiet whoa - big ideas, oddball experiments, and work that does some good.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="support.html">Support</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Use</a>
-                <a href="#about">About</a>
-                <a href="mailto:support@hoohoo.studio">Contact</a>
-            </div>
-            <div class="footer-social">
-                <a href="https://discord.gg/RjFud8SMNr" target="_blank" rel="noopener" aria-label="Discord">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-            </div>
-            <div class="footer-text">
-                <p>&copy; <span id="copyright-year">2025</span> Hoo Hoo Studios. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Apple-style scroll animations -->
     <script>
-        // Structured Data - Organization + WebSite + SoftwareApplication (Grid Nite)
+        // Structured Data - Organization + WebSite + SoftwareApplication
         try {
             const ld = {
               '@context': 'https://schema.org',
@@ -163,20 +85,12 @@
                   'name': 'Hoo Hoo Studios',
                   'url': 'https://hoohoo.studio/',
                   'logo': 'https://hoohoo.studio/img/owl.svg',
-                  'sameAs': [
-                    'https://discord.gg/RjFud8SMNr'
-                  ],
                   'email': 'mailto:support@hoohoo.studio'
                 },
                 {
                   '@type': 'WebSite',
                   'name': 'Hoo Hoo Studios',
-                  'url': 'https://hoohoo.studio/',
-                  'potentialAction': {
-                    '@type': 'SearchAction',
-                    'target': 'https://hoohoo.studio/?q={search_term_string}',
-                    'query-input': 'required name=search_term_string'
-                  }
+                  'url': 'https://hoohoo.studio/'
                 },
                 {
                   '@type': 'SoftwareApplication',
@@ -184,8 +98,7 @@
                   'operatingSystem': 'iOS',
                   'applicationCategory': 'Game',
                   'offers': { '@type': 'Offer', 'price': '0', 'priceCurrency': 'USD' },
-                  'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '5', 'reviewCount': '12' },
-                  'url': 'https://apps.apple.com/us/app/grid-nite/id6749193485'
+                  'url': 'https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485'
                 },
                 {
                   '@type': 'SoftwareApplication',
@@ -204,292 +117,33 @@
             document.currentScript.parentNode.insertBefore(s, document.currentScript);
         } catch (e) { /* noop */ }
 
-        // Smooth scroll behavior
-        document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for scroll-triggered animations
-            const observerOptions = {
-                threshold: 0.15,
-                rootMargin: '0px 0px -100px 0px'
+        // Auto-update copyright year
+        const yearEl = document.getElementById('copyright-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // Idle settle. Any sign of intent wakes the chrome back up — focusin
+        // matters most, so tabbing restores the links before they're used.
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const IDLE = 6000;
+            const FADE = 5000;
+            const body = document.body;
+            let timer, pauseTimer;
+            const settle = () => {
+                body.classList.add('settled');
+                // Only mark fully faded once the 5s transition has finished.
+                pauseTimer = setTimeout(() => body.classList.add('faded'), FADE);
             };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with scroll animations
-            document.querySelectorAll('[data-scroll-fade], [data-scroll-fade-up], [data-scroll-section]').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Parallax effect for hero video
-            let ticking = false;
-            const heroVideo = document.getElementById('hero-video');
-            const heroContent = document.querySelector('.hero-content');
-
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        const scrolled = window.pageYOffset;
-                        const heroHeight = document.getElementById('hero').offsetHeight;
-
-                        if (scrolled < heroHeight) {
-                            // Parallax effect on video
-                            if (heroVideo) {
-                                heroVideo.style.transform = `translateY(${scrolled * 0.5}px) scale(${1 + scrolled * 0.0002})`;
-                            }
-
-                            // Fade out hero content as user scrolls
-                            if (heroContent) {
-                                const opacity = 1 - (scrolled / (heroHeight * 0.6));
-                                const translateY = scrolled * 0.3;
-                                heroContent.style.opacity = Math.max(0, opacity);
-                                heroContent.style.transform = `translateY(${translateY}px)`;
-                            }
-                        }
-
-                        ticking = false;
-                    });
-
-                    ticking = true;
-                }
-            });
-
-            // Header transparency on scroll
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }, { passive: true });
-
-            // Hide scroll indicator after scrolling
-            window.addEventListener('scroll', function() {
-                const scrollIndicator = document.querySelector('.scroll-indicator');
-                if (scrollIndicator && window.pageYOffset > 100) {
-                    scrollIndicator.style.opacity = '0';
-                    scrollIndicator.style.pointerEvents = 'none';
-                }
-            }, { passive: true });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href !== '#' && href !== '#top') {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            const headerOffset = 80;
-                            const elementPosition = target.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-
-            // Add initial visible state to hero content
-            setTimeout(() => {
-                heroContent?.classList.add('visible');
-            }, 100);
-
-            // Smooth video reveal when it's actually ready
-            const hero = document.getElementById('hero');
-            const clamp01 = (v) => Math.max(0, Math.min(1, v));
-            let fadeRaf;
-            let fadeWindow = 2; // seconds; recalculated after metadata
-
-            const syncFadeToTimeline = () => {
-                if (!heroVideo || heroVideo.readyState < 1) return;
-
-                const d = heroVideo.duration || 0;
-                if (d > 0) {
-                    // fadeWindow is 10–15% of duration, clamped between 1.0s and 3.0s
-                    fadeWindow = Math.max(1.0, Math.min(3.0, d * 0.12));
-                }
-
-                const tick = () => {
-                    if (!heroVideo) return;
-                    const t = heroVideo.currentTime || 0;
-                    const dur = heroVideo.duration || 0;
-                    let opacity = 1;
-                    if (dur > 0) {
-                        const fin = clamp01(t / fadeWindow);
-                        const fout = clamp01((dur - t) / fadeWindow);
-                        opacity = Math.min(fin, fout);
-                    }
-                    heroVideo.style.opacity = String(opacity);
-                    fadeRaf = requestAnimationFrame(tick);
-                };
-
-                cancelAnimationFrame(fadeRaf);
-                fadeRaf = requestAnimationFrame(tick);
+            const wake = () => {
+                body.classList.remove('settled', 'faded');
+                clearTimeout(timer);
+                clearTimeout(pauseTimer);
+                timer = setTimeout(settle, IDLE);
             };
-
-            const revealVideo = () => {
-                if (!heroVideo || !hero) return;
-                hero.classList.add('video-loaded');
-                heroVideo.classList.add('is-loaded');
-                // Slow the video to 0.5x for a calm, cinematic feel
-                heroVideo.loop = false;
-                heroVideo.defaultPlaybackRate = 0.5;
-                heroVideo.playbackRate = 0.5;
-                syncFadeToTimeline();
-            };
-
-            if (heroVideo) {
-                // If browser already buffered enough
-                if (heroVideo.readyState >= 2) {
-                    revealVideo();
-                } else {
-                    heroVideo.addEventListener('loadedmetadata', revealVideo, { once: true });
-                    heroVideo.addEventListener('canplaythrough', revealVideo, { once: true });
-                    // Fallback safety after 3s: only reveal if it's actually ready
-                    setTimeout(() => {
-                        if (!hero.classList.contains('video-loaded') && heroVideo.readyState >= 2) {
-                            revealVideo();
-                        }
-                    }, 3000);
-                }
-
-                // In case of error, keep graceful fallback
-                heroVideo.addEventListener('error', () => {
-                    hero.classList.remove('video-loaded');
-                    heroVideo.classList.remove('is-loaded');
-                }, { once: true });
-
-                // Keep 0.5x playback and fade sync on play/seek/loop
-                heroVideo.addEventListener('play', () => {
-                    heroVideo.playbackRate = 0.5;
-                    syncFadeToTimeline();
-                });
-                heroVideo.addEventListener('seeking', () => {
-                    syncFadeToTimeline();
-                });
-                heroVideo.addEventListener('loadedmetadata', () => {
-                    heroVideo.defaultPlaybackRate = 0.5;
-                });
-
-                // Pause at end, wait 3s, then restart from 0
-                let loopTimeout;
-                const scheduleLoopRestart = () => {
-                    clearTimeout(loopTimeout);
-                    loopTimeout = setTimeout(() => {
-                        if (!heroVideo) return;
-                        try { heroVideo.currentTime = 0; } catch (e) {}
-                        heroVideo.playbackRate = 0.5;
-                        const p = heroVideo.play();
-                        if (p && typeof p.then === 'function') p.catch(() => {});
-                    }, 3000);
-                };
-
-                heroVideo.addEventListener('ended', () => {
-                    try { heroVideo.pause(); } catch (e) {}
-                    cancelAnimationFrame(fadeRaf);
-                    heroVideo.style.opacity = '0';
-                    scheduleLoopRestart();
-                });
-            }
-
-            // Projects data - published apps
-            function getProjectsData() {
-                return [
-                    {
-                        name: 'Smooj',
-                        category: 'apps',
-                        description: 'Send love through iMessage. A playful way to track and celebrate the little moments of appreciation in your relationship. Pick an action, add some hearts, and watch your connection grow with beautiful insights and summaries.',
-                        image: 'img/smooj_preview.svg',
-                        links: {
-                            'App Store': 'https://apps.apple.com/app/id6758178218'
-                        },
-                        featured: true
-                    },
-                    {
-                        name: 'Grid Nite',
-                        category: 'apps',
-                        description: 'Master combinatorics puzzles in this calm logic challenge. Tap tiles to toggle lights in a 5×5 grid—turn off all the lights! Inspired by the classic Lights Out puzzle with 100+ levels, daily challenges, and achievements. A cozy puzzler with smooth loops and satisfying snaps.',
-                        image: 'img/gridnite_preview.mp4',
-                        links: {
-                            'App Store': 'https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485'
-                        },
-                        featured: true
-                    }
-                ];
-            }
-
-            // Load and render projects
-            function loadProjects() {
-                const projects = getProjectsData();
-                renderProjects(projects);
-            }
-
-            function renderProjects(projects) {
-                const grid = document.getElementById('projects-grid');
-                if (!grid) return;
-
-                grid.innerHTML = projects.map(project => {
-                    const isVideo = project.image && project.image.endsWith('.mp4');
-                    const primaryLink = Object.values(project.links)[0] || '#';
-                    const isClickable = primaryLink !== '#';
-                    const isExternal = primaryLink.startsWith('http');
-                    const clickAction = isExternal ? `window.open('${primaryLink}', '_blank')` : `window.location.href='${primaryLink}'`;
-
-                    return `
-                    <div class="project-card ${isClickable ? 'clickable' : ''}" data-category="${project.category}" ${isClickable ? `onclick="${clickAction}"` : ''}>
-                        ${project.image ? `
-                            <div class="project-image">
-                                ${isVideo ? `
-                                    <video src="${project.image}" alt="${project.name}" autoplay loop muted playsinline preload="auto" onloadstart="console.log('Video loading: ${project.image}')" onerror="console.error('Video failed to load: ${project.image}'); this.style.display='none';"></video>
-                                ` : `
-                                    <img src="${project.image}" alt="${project.name}" loading="lazy" onload="console.log('Image loaded: ${project.image}')" onerror="console.error('Image failed to load: ${project.image}'); this.style.display='none';" />
-                                `}
-                            </div>
-                        ` : `<div class="project-image"></div>`}
-                        <div class="project-content">
-                            <h3 class="project-title">${project.name}</h3>
-                            <p class="project-description">${project.description}</p>
-                        </div>
-                    </div>
-                `;}).join('');
-
-                // Add scroll animation to newly rendered cards
-                setTimeout(() => {
-                    document.querySelectorAll('.project-card').forEach(card => {
-                        card.classList.add('visible');
-                    });
-                }, 100);
-
-                // Touch support for mobile - add touched class on tap for animation
-                if ('ontouchstart' in window) {
-                    document.querySelectorAll('.project-card').forEach(card => {
-                        card.addEventListener('touchstart', function() {
-                            this.classList.add('touched');
-                        }, { passive: true });
-                        card.addEventListener('touchend', function() {
-                            const el = this;
-                            setTimeout(() => el.classList.remove('touched'), 300);
-                        }, { passive: true });
-                    });
-                }
-            }
-
-            // Initialize projects
-            loadProjects();
-
-            // Auto-update copyright year
-            const yearEl = document.getElementById('copyright-year');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        });
+            ['pointermove', 'pointerdown', 'touchstart', 'keydown', 'focusin', 'wheel']
+                .forEach(evt => window.addEventListener(evt, wake, { passive: true }));
+            timer = setTimeout(settle, IDLE);
+        })();
     </script>
 </body>
 </html>
