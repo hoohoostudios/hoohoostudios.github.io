@@ -136,8 +136,9 @@ img,
 }
 .sprite-smooj { -webkit-mask-image: url('img/pixel/smooj.svg'); mask-image: url('img/pixel/smooj.svg'); }
 .sprite-gridnite { -webkit-mask-image: url('img/pixel/gridnite.svg'); mask-image: url('img/pixel/gridnite.svg'); }
+.sprite-soon { -webkit-mask-image: url('img/pixel/soon.svg'); mask-image: url('img/pixel/soon.svg'); }
 
-/* Day/night toggle: shows where it will take you. */
+/* Day/night toggle: shows the time of day it is, sun or moon. */
 .theme-toggle {
   display: block;
   padding: 6px;
@@ -151,12 +152,12 @@ img,
 .theme-toggle .sprite {
   width: 32px;
   height: 32px;
-  -webkit-mask-image: url('img/pixel/moon.svg');
-  mask-image: url('img/pixel/moon.svg');
-}
-[data-theme="dark"] .theme-toggle .sprite {
   -webkit-mask-image: url('img/pixel/sun.svg');
   mask-image: url('img/pixel/sun.svg');
+}
+[data-theme="dark"] .theme-toggle .sprite {
+  -webkit-mask-image: url('img/pixel/moon.svg');
+  mask-image: url('img/pixel/moon.svg');
 }
 .theme-toggle:hover .sprite { transform: translateY(-2px); }
 .theme-toggle:active .sprite { transform: translateY(2px); }
@@ -204,7 +205,8 @@ img,
   margin-right: -0.5em; /* the tracking trails the last letter; cancel it to stay centred */
 }
 
-/* Only apps that are out. Icon over name, like a home screen. */
+/* The experiments, numbered in the order they shipped. Icon, catalogue
+   number in pencil, then the name, like a cartridge label. */
 .apps {
   display: flex;
   gap: calc(var(--px) * 10);
@@ -214,15 +216,18 @@ img,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.4rem;
   font-family: var(--pixel);
   font-size: 16px;
 }
-.app .sprite { width: var(--icon); height: var(--icon); }
+.app .sprite { width: var(--icon); height: var(--icon); margin-bottom: 0.4rem; }
+.app .no { font-size: 13px; color: var(--pencil); }
+/* The next one is still in pencil. */
+.app.next { color: var(--pencil); cursor: default; }
 /* Movement is in whole sprite pixels, never eased. */
-.app:hover .sprite,
-.app:focus-visible .sprite { transform: translateY(calc(var(--px) * -1)); }
-.app:active .sprite { transform: translateY(var(--px)); }
+a.app:hover .sprite,
+a.app:focus-visible .sprite { transform: translateY(calc(var(--px) * -1)); }
+a.app:active .sprite { transform: translateY(var(--px)); }
 
 /* One line under the apps. It types itself, then waits at the cursor. */
 .caption {
