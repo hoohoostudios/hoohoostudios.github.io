@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoo&nbsp;Hoo Studios</title>
-    <!-- Main stylesheet (Poppins and Instrument Serif are self-hosted in fonts/) -->
+    <!-- Main stylesheet (Silkscreen is self-hosted in fonts/) -->
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     <!-- Meta: Social / SEO -->
-    <meta name="description" content="Hoo Hoo Studios — small apps that run on your device. No ads, no tracking, no data collected.">
+    <meta name="description" content="Hoo Hoo Studios makes small apps that stay on your phone. No ads, no tracking, no data collected.">
     <meta property="og:title" content="Hoo Hoo Studios">
-    <meta property="og:description" content="Small apps that run on your device. No ads, no tracking, no data collected.">
+    <meta property="og:description" content="Small apps that stay on your phone. No ads, no tracking, no data collected.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Hoo Hoo Studios">
     <meta property="og:url" content="https://hoohoo.studio/">
@@ -23,56 +22,31 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="The Hoo Hoo Studios owl mark and wordmark over a field of distant galaxies.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#F2EEE3">
     <link rel="canonical" href="https://hoohoo.studio/">
 </head>
 <body class="landing-page">
-    <div class="stage">
-        <div class="stage-top">
-            <div class="container">
-                <!-- Not a link: this is the page it would lead to. -->
-                <div class="brand">
-                    <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
-                    <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
-                </div>
-            </div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.6" xChannelSelector="R" yChannelSelector="G"/></filter>
+    </svg>
+    <main>
+        <h1 class="title ink"><img class="logo" id="owl" src="img/pixel/owl.svg" alt="" width="128" height="128"><span class="wordmark"><span class="name">Hoo&nbsp;Hoo</span> <span class="descriptor">Studios</span></span></h1>
+        <ul class="apps ink">
+            <li><a class="app" href="https://apps.apple.com/app/id6758178218" target="_blank" rel="noopener" data-caption="Send love through iMessage"><img src="img/pixel/smooj.svg" alt=""><span>Smooj</span></a></li>
+            <li><a class="app" href="https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485" target="_blank" rel="noopener" data-caption="A calm lights-out puzzle"><img src="img/pixel/gridnite.svg" alt=""><span>Grid Nite</span></a></li>
+        </ul>
+        <p class="caption" aria-hidden="true"><span id="caption"></span><span class="caret"></span></p>
+    </main>
+
+    <footer>
+        <div class="container utility">
+            <a href="support.html" target="_blank" rel="noopener">Support</a>
+            <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>
+            <a href="terms.html" target="_blank" rel="noopener">Terms</a>
+            <a href="mailto:support@hoohoo.studio">Contact</a>
+            <span class="copyright">&copy; <span id="copyright-year">2026</span></span>
         </div>
-
-        <main class="stage-mid">
-            <div class="container">
-                <h1 class="lede">Small apps that run on your device<span class="stop">.</span></h1>
-                <p class="sub">No ads. No tracking. No data collected.</p>
-
-                <div class="apps">
-                    <a class="app" href="https://apps.apple.com/app/id6758178218">
-                        <img class="app-icon" src="img/icon-smooj.png" alt="" width="44" height="44">
-                        <span><span class="name">Smooj</span><br><span class="what">Send love through iMessage</span></span>
-                        <span class="go" aria-hidden="true">&#8594;</span>
-                    </a>
-                    <a class="app" href="https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485">
-                        <img class="app-icon" src="img/icon-gridnite.png" alt="" width="44" height="44">
-                        <span><span class="name">Grid Nite</span><br><span class="what">A calm lights-out puzzler</span></span>
-                        <span class="go" aria-hidden="true">&#8594;</span>
-                    </a>
-                </div>
-            </div>
-        </main>
-
-        <div class="stage-bottom">
-            <div class="container utility">
-                <a href="support.html">Support</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
-                <a href="mailto:support@hoohoo.studio">Contact</a>
-                <span class="copyright">&copy; <span id="copyright-year">2026</span> Hoo Hoo Studios</span>
-            </div>
-            <div class="chyron" aria-hidden="true">
-                <div class="chyron-track">
-                    <span>Hoo goes there<b class="dot">&middot;</b></span><span>No cookies, not even the good kind<b class="dot">&middot;</b></span><span>We once shipped a 16-megabyte hero video<b class="dot">&middot;</b></span><span>The collective noun for owls is a parliament<b class="dot">&middot;</b></span><span>Awake at an unreasonable hour, as usual<b class="dot">&middot;</b></span><span>This ticker is load-bearing for absolutely nothing<b class="dot">&middot;</b></span><span>Hoo goes there<b class="dot">&middot;</b></span><span>No cookies, not even the good kind<b class="dot">&middot;</b></span><span>We once shipped a 16-megabyte hero video<b class="dot">&middot;</b></span><span>The collective noun for owls is a parliament<b class="dot">&middot;</b></span><span>Awake at an unreasonable hour, as usual<b class="dot">&middot;</b></span><span>This ticker is load-bearing for absolutely nothing<b class="dot">&middot;</b></span>
-                </div>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script>
         // Structured Data - Organization + WebSite + SoftwareApplication
@@ -84,7 +58,7 @@
                   '@type': 'Organization',
                   'name': 'Hoo Hoo Studios',
                   'url': 'https://hoohoo.studio/',
-                  'logo': 'https://hoohoo.studio/img/owl.svg',
+                  'logo': 'https://hoohoo.studio/img/apple-touch-icon-512.png',
                   'email': 'mailto:support@hoohoo.studio'
                 },
                 {
@@ -121,28 +95,59 @@
         const yearEl = document.getElementById('copyright-year');
         if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        // Idle settle. Any sign of intent wakes the chrome back up — focusin
-        // matters most, so tabbing restores the links before they're used.
+        // The owl watches the cursor: its pupils shift a pixel toward the
+        // pointer in any of eight directions, and every so often it blinks.
+        // Pre-drawn frames, swapped whole, so it moves like a sprite.
         (function () {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            const IDLE = 6000;
-            const FADE = 5000;
-            const body = document.body;
-            let timer, pauseTimer;
-            const settle = () => {
-                body.classList.add('settled');
-                // Only mark fully faded once the 5s transition has finished.
-                pauseTimer = setTimeout(() => body.classList.add('faded'), FADE);
+            const owl = document.getElementById('owl');
+            if (!owl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const src = name => `img/pixel/${name}.svg`;
+            // Clockwise from east, one per 45 degrees (screen y points down).
+            const DIRS = ['e', 'se', 's', 'sw', 'w', 'nw', 'n', 'ne'];
+            DIRS.concat('blink').forEach(d => { new Image().src = src(`owl-${d}`); });
+            let look = 'owl', blinking = false;
+            const draw = () => { owl.src = src(blinking ? 'owl-blink' : look); };
+            addEventListener('pointermove', e => {
+                const r = owl.getBoundingClientRect();
+                const dx = e.clientX - (r.left + r.width / 2);
+                const dy = e.clientY - (r.top + r.height / 2);
+                // Over the owl itself it looks straight ahead.
+                const next = Math.hypot(dx, dy) < r.width * 0.6 ? 'owl'
+                    : `owl-${DIRS[(Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) + 8) % 8]}`;
+                if (next !== look) { look = next; draw(); }
+            }, { passive: true });
+            const blink = () => {
+                blinking = true; draw();
+                setTimeout(() => { blinking = false; draw(); }, 140);
+                setTimeout(blink, 2500 + Math.random() * 4000);
             };
-            const wake = () => {
-                body.classList.remove('settled', 'faded');
-                clearTimeout(timer);
-                clearTimeout(pauseTimer);
-                timer = setTimeout(settle, IDLE);
+            setTimeout(blink, 2000);
+        })();
+
+        // Hovering an app types its one-liner under the row, then rests at
+        // the caret. The names are always visible; this is only the detail.
+        (function () {
+            const caption = document.getElementById('caption');
+            if (!caption) return;
+            let typing, current = '';
+            const type = text => {
+                if (text === current) return;
+                current = text;
+                clearInterval(typing);
+                let shown = caption.textContent;
+                typing = setInterval(() => {
+                    if (!text.startsWith(shown)) shown = shown.slice(0, -1);
+                    else if (shown.length < text.length) shown = text.slice(0, shown.length + 1);
+                    else return clearInterval(typing);
+                    caption.textContent = shown;
+                }, 22);
             };
-            ['pointermove', 'pointerdown', 'touchstart', 'keydown', 'focusin', 'wheel']
-                .forEach(evt => window.addEventListener(evt, wake, { passive: true }));
-            timer = setTimeout(settle, IDLE);
+            document.querySelectorAll('[data-caption]').forEach(el => {
+                el.addEventListener('pointerenter', () => type(el.dataset.caption));
+                el.addEventListener('focus', () => type(el.dataset.caption));
+                el.addEventListener('pointerleave', () => type(''));
+                el.addEventListener('blur', () => type(''));
+            });
         })();
     </script>
 </body>

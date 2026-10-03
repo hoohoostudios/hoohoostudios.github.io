@@ -11,11 +11,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.6" xChannelSelector="R" yChannelSelector="G"/></filter>
+    </svg>
   <!-- Navigation -->
   <header id="header">
     <div class="container nav-container">
-      <a href="index.html" class="brand">
-        <img src="img/owl.svg" alt="Hoo Hoo Studios logo" class="logo">
+      <a href="index.html" class="brand ink">
+        <img src="img/pixel/owl.svg" alt="Hoo Hoo Studios logo" class="logo" width="32" height="32">
         <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
       </a>
       <nav class="nav-links">
