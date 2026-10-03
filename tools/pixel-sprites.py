@@ -161,7 +161,28 @@ def eyes_only(g):
 night = {name.replace('owl', 'owl-eyes', 1): eyes_only(g)
          for name, g in list(sprites.items()) if name.startswith('owl')}
 
-# Theme toggle: a moon (switch to dark) and a sun (switch to light).
+# The next experiment, not yet inked: a dashed frame and a question mark.
+g = blank()
+for y in range(N):
+    inset = 2 if y in (0, 15) else (1 if y in (1, 14) else 0)
+    for x in range(inset, N - inset):
+        edge = y in (0, 15) or x in (inset, N - 1 - inset) or (y in (1, 14) and x in (1, 14))
+        straight = 2 <= x <= 13 if y in (0, 15) else 2 <= y <= 13
+        # Dash the straight runs, mirrored so both ends match; corners stay whole.
+        along = x if y in (0, 15) else y
+        if edge and not (straight and min(along, N - 1 - along) % 2):
+            g[y][x] = '#'
+stamp(g, ['.####.',
+          '##..##',
+          '....##',
+          '...##.',
+          '..##..',
+          '..##..',
+          '......',
+          '..##..'], 5, 4)
+sprites['soon'] = g
+
+# Theme toggle: the sun by day, the moon by night.
 sprites['moon'] = stamp(blank(), ['................',
                                   '......###.......',
                                   '....###.........',
@@ -186,26 +207,25 @@ for (x, y) in [(7, 0), (8, 0), (7, 1), (8, 1), (7, 14), (8, 14), (7, 15), (8, 15
     g[y][x] = '#'
 sprites['sun'] = g
 
-# The same owl at 16x16, for the favicon.
-OWL_16 = ['........',
-          '.#......',
-          '.##.....',
-          '.#######',
-          '##...###',
-          '#..##.##',
-          '#.###.##',
-          '#.###.##',
-          '##...##.',
-          '.######.',
-          '.###.###',
-          '.##.#.##',
-          '.#.###.#',
-          '..######',
-          '...#.#..',
-          '........']
-owl16 = [list(r + r[::-1]) for r in OWL_16]
-for (x, y) in [(4, 4), (11, 4), (5, 5), (10, 5)]:
-    owl16[y][x] = '#'  # brow
+# The favicon: at 16x16 the full owl turns to speckle, so this is a crop to
+# the face. Tufts, two big ring eyes under the brow, and the beak, which is
+# what tells it apart from a cat at this size.
+owl16 = [list(r) for r in ['.#............#.',
+                           '.##..........##.',
+                           '.##############.',
+                           '################',
+                           '##..########..##',
+                           '#....######....#',
+                           '#..##..##..##..#',
+                           '#..##..##..##..#',
+                           '##....#..#....##',
+                           '#######..#######',
+                           '################',
+                           '################',
+                           '.##############.',
+                           '..############..',
+                           '...#.#....#.#...',
+                           '................']]
 
 
 def svg(g, fill=INK):
@@ -262,7 +282,7 @@ def raster(g, scale, size=None, bg=None):
 
 
 # ICO can't switch colour like the SVG can, so it sits on paper.
-raster(sprites['owl'], 1, bg=PAPER).save('favicon.ico', sizes=[(16, 16), (32, 32)],
+raster(owl16, 2, bg=PAPER).save('favicon.ico', sizes=[(16, 16), (32, 32)],
                                          append_images=[raster(owl16, 1, bg=PAPER)])
 raster(sprites['owl'], 5, (180, 180), PAPER).convert('RGB').save('img/apple-touch-icon.png')
 raster(sprites['owl'], 14, (512, 512), PAPER).convert('RGB').save('img/apple-touch-icon-512.png')
