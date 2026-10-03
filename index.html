@@ -115,7 +115,9 @@
             // data-owl tracks the frame, so a theme switch redraws the right one.
             const draw = () => {
                 owl.dataset.owl = blinking ? 'owl-blink' : look;
-                owl.src = owlSrc(owl.dataset.owl);
+                // Mid day/night switch, theme.js is drawing the owl; it picks up
+                // data-owl when it finishes.
+                if (!('switching' in document.documentElement.dataset)) owl.src = owlSrc(owl.dataset.owl);
             };
             addEventListener('pointermove', e => {
                 const r = owl.getBoundingClientRect();
