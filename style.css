@@ -4,7 +4,9 @@
  * A printed game manual. Warm paper, one black ink, and pixels set like
  * type: every sprite is a pixel grid in img/pixel/, scaled by whole pixels
  * so the edges stay hard. A faint pencil grey marks things not yet inked.
- * The paper does not go dark; it is paper.
+ *
+ * Night (data-theme="dark", set by theme.js) swaps paper and ink. The owl
+ * goes further: its body sinks into the dark and only its eyes stay lit.
  */
 
 /* Silkscreen, self-hosted (OFL 1.1). Pixel face for headings and labels. */
@@ -38,6 +40,15 @@
   color-scheme: light;
 }
 
+:root[data-theme="dark"] {
+  --paper: #12110F;
+  --paper-light: #1C1B18;
+  --ink: #ECE7DA;
+  --ink-2: #A8A294;
+  --pencil: #6E695F;
+  color-scheme: dark;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -63,6 +74,9 @@ body::before {
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .32 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* At night multiply would vanish into the black; lift the grain instead. */
+[data-theme="dark"] body::before { mix-blend-mode: screen; opacity: 0.12; }
 
 /* Ink spread: a hair of displacement so pixel edges print, not render.
    The filter itself is inlined in each page as #ink. */
@@ -109,6 +123,45 @@ img,
 .nav-links a:hover,
 .footer-links a:hover,
 .toc a:hover { background: var(--ink); color: var(--paper); }
+
+/* One-colour sprites drawn as masks, so they take the current ink colour,
+   day or night. */
+.sprite {
+  display: block;
+  background-color: currentColor;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.sprite-smooj { -webkit-mask-image: url('img/pixel/smooj.svg'); mask-image: url('img/pixel/smooj.svg'); }
+.sprite-gridnite { -webkit-mask-image: url('img/pixel/gridnite.svg'); mask-image: url('img/pixel/gridnite.svg'); }
+
+/* Day/night toggle: shows where it will take you. */
+.theme-toggle {
+  display: block;
+  padding: 6px;
+  margin: -6px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle .sprite {
+  width: 32px;
+  height: 32px;
+  -webkit-mask-image: url('img/pixel/moon.svg');
+  mask-image: url('img/pixel/moon.svg');
+}
+[data-theme="dark"] .theme-toggle .sprite {
+  -webkit-mask-image: url('img/pixel/sun.svg');
+  mask-image: url('img/pixel/sun.svg');
+}
+.theme-toggle:hover .sprite { transform: translateY(-2px); }
+.theme-toggle:active .sprite { transform: translateY(2px); }
+.landing-page > .theme-toggle { position: absolute; top: 2rem; right: 2rem; z-index: 1; }
+.nav-links .theme-toggle { margin-left: 0.25rem; }
 
 /* ---------- Landing ---------- */
 
@@ -165,11 +218,11 @@ img,
   font-family: var(--pixel);
   font-size: 16px;
 }
-.app img { width: var(--icon); height: var(--icon); }
+.app .sprite { width: var(--icon); height: var(--icon); }
 /* Movement is in whole sprite pixels, never eased. */
-.app:hover img,
-.app:focus-visible img { transform: translateY(calc(var(--px) * -1)); }
-.app:active img { transform: translateY(var(--px)); }
+.app:hover .sprite,
+.app:focus-visible .sprite { transform: translateY(calc(var(--px) * -1)); }
+.app:active .sprite { transform: translateY(var(--px)); }
 
 /* One line under the apps. It types itself, then waits at the cursor. */
 .caption {
@@ -223,7 +276,7 @@ img,
 .nav-container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--pixel); font-size: 16px; }
 .logo { width: 32px; height: 32px; }
-.nav-links { display: flex; gap: 1.5rem; font-size: 16px; }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 16px; }
 
 footer { margin-top: 6rem; padding: 0 0 2.5rem; }
 .footer-content {
@@ -311,6 +364,9 @@ code { font-family: var(--mono); background: var(--paper-light); padding: 0 0.25
   background-position: right 0.85rem center;
   background-size: 10px 6px;
   padding-right: 2.25rem;
+}
+[data-theme="dark"] .support select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 3' shape-rendering='crispEdges'%3E%3Cpath fill='%23ECE7DA' d='M0 0h5v1H0zM1 1h3v1H1zM2 2h1v1H2z'/%3E%3C/svg%3E");
 }
 .support textarea { min-height: 9rem; resize: vertical; }
 

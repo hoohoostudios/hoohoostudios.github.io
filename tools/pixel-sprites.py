@@ -4,6 +4,7 @@
 # characters: '#' = ink, '.' = paper (transparent). Edit a grid, re-run.
 
 INK = '#1C1B19'
+NIGHT_INK = '#ECE7DA'  # the ink colour in dark mode
 N = 16
 
 
@@ -142,6 +143,49 @@ for name, look in LOOKS.items():
     sprites[f'owl-{name}'] = owl(look)
 sprites['owl-blink'] = owl(closed=True)
 
+
+def eyes_only(g):
+    """Night version: the body sinks into the dark and only what was paper
+    inside the eyes stays lit: the rings, the glints, the closed lids."""
+    import math
+    out = [['.'] * 32 for _ in range(32)]
+    for y in range(32):
+        for x in range(32):
+            in_eye = any(math.hypot(x + .5 - ex, y + .5 - EYE_Y) <= EYE_OUT for ex in (EYE_X, 32 - EYE_X))
+            if in_eye and g[y][x] == '.':
+                out[y][x] = '#'
+    return out
+
+
+# Drawn in night ink; see the colour override when writing them out below.
+night = {name.replace('owl', 'owl-eyes', 1): eyes_only(g)
+         for name, g in list(sprites.items()) if name.startswith('owl')}
+
+# Theme toggle: a moon (switch to dark) and a sun (switch to light).
+sprites['moon'] = stamp(blank(), ['................',
+                                  '......###.......',
+                                  '....###.........',
+                                  '...###..........',
+                                  '..####..........',
+                                  '..###...........',
+                                  '.####...........',
+                                  '.####...........',
+                                  '.####...........',
+                                  '.#####..........',
+                                  '.######.......#.',
+                                  '..#######...###.',
+                                  '..############..',
+                                  '...##########...',
+                                  '.....######.....',
+                                  '................'], 0, 0)
+g = blank()
+paint(g, disc(8, 8, 4.1), '#')
+for (x, y) in [(7, 0), (8, 0), (7, 1), (8, 1), (7, 14), (8, 14), (7, 15), (8, 15),
+               (0, 7), (0, 8), (1, 7), (1, 8), (14, 7), (14, 8), (15, 7), (15, 8),
+               (2, 2), (3, 3), (13, 2), (12, 3), (2, 13), (3, 12), (13, 13), (12, 12)]:
+    g[y][x] = '#'
+sprites['sun'] = g
+
 # The same owl at 16x16, for the favicon.
 OWL_16 = ['........',
           '.#......',
@@ -164,7 +208,7 @@ for (x, y) in [(4, 4), (11, 4), (5, 5), (10, 5)]:
     owl16[y][x] = '#'  # brow
 
 
-def svg(g):
+def svg(g, fill=INK):
     h, w = len(g), len(g[0])
     d = []
     for y in range(h):
@@ -178,7 +222,7 @@ def svg(g):
             else:
                 x += 1
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" shape-rendering="crispEdges">\n'
-            f'  <path fill="{INK}" d="{"".join(d)}"/>\n</svg>\n')
+            f'  <path fill="{fill}" d="{"".join(d)}"/>\n</svg>\n')
 
 
 for name, g in sprites.items():
@@ -187,6 +231,10 @@ for name, g in sprites.items():
     print(name)
     print('\n'.join(''.join(r) for r in g))
     print()
+
+for name, g in night.items():
+    with open(f'img/pixel/{name}.svg', 'w') as f:
+        f.write(svg(g, NIGHT_INK))
 
 # Favicon (SVG): ink on light tabs, paper on dark ones.
 with open('img/favicon.svg', 'w') as f:

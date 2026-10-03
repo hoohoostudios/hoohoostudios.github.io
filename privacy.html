@@ -9,6 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
 </head>
 <body class="legal-page">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -18,13 +19,14 @@
   <header id="header">
     <div class="container nav-container">
       <a href="index.html" class="brand ink">
-        <img src="img/pixel/owl.svg" alt="Hoo Hoo Studios logo" class="logo" width="32" height="32">
+        <img src="img/pixel/owl.svg" data-owl="owl" alt="Hoo Hoo Studios logo" class="logo" width="32" height="32">
         <span>Hoo&nbsp;Hoo&nbsp;Studios</span>
       </a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="support.html">Support</a>
         <a href="terms.html">Terms</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"><span class="sprite" aria-hidden="true"></span></button>
       </nav>
     </div>
   </header>

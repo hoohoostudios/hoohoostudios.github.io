@@ -6,6 +6,7 @@
     <title>Hoo&nbsp;Hoo Studios</title>
     <!-- Main stylesheet (Silkscreen is self-hosted in fonts/) -->
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
@@ -29,11 +30,12 @@
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
         <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.6" xChannelSelector="R" yChannelSelector="G"/></filter>
     </svg>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"><span class="sprite" aria-hidden="true"></span></button>
     <main>
-        <h1 class="title ink"><img class="logo" id="owl" src="img/pixel/owl.svg" alt="" width="128" height="128"><span class="wordmark"><span class="name">Hoo&nbsp;Hoo</span> <span class="descriptor">Studios</span></span></h1>
+        <h1 class="title ink"><img class="logo" id="owl" data-owl="owl" src="img/pixel/owl.svg" alt="" width="128" height="128"><span class="wordmark"><span class="name">Hoo&nbsp;Hoo</span> <span class="descriptor">Studios</span></span></h1>
         <ul class="apps ink">
-            <li><a class="app" href="https://apps.apple.com/app/id6758178218" target="_blank" rel="noopener" data-caption="Send love through iMessage"><img src="img/pixel/smooj.svg" alt=""><span>Smooj</span></a></li>
-            <li><a class="app" href="https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485" target="_blank" rel="noopener" data-caption="A calm lights-out puzzle"><img src="img/pixel/gridnite.svg" alt=""><span>Grid Nite</span></a></li>
+            <li><a class="app" href="https://apps.apple.com/app/id6758178218" target="_blank" rel="noopener" data-caption="Send love through iMessage"><span class="sprite sprite-smooj" aria-hidden="true"></span><span>Smooj</span></a></li>
+            <li><a class="app" href="https://apps.apple.com/us/app/grid-nite-lights-out-puzzle/id6749193485" target="_blank" rel="noopener" data-caption="A calm lights-out puzzle"><span class="sprite sprite-gridnite" aria-hidden="true"></span><span>Grid Nite</span></a></li>
         </ul>
         <p class="caption" aria-hidden="true"><span id="caption"></span><span class="caret"></span></p>
     </main>
@@ -96,17 +98,25 @@
         if (yearEl) yearEl.textContent = new Date().getFullYear();
 
         // The owl watches the cursor: its pupils shift a pixel toward the
-        // pointer in any of eight directions, and every so often it blinks.
+        // pointer in any of eight directions, and every so often it blinks. At
+        // night only the eyes are drawn (see theme.js).
         // Pre-drawn frames, swapped whole, so it moves like a sprite.
         (function () {
             const owl = document.getElementById('owl');
             if (!owl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            const src = name => `img/pixel/${name}.svg`;
             // Clockwise from east, one per 45 degrees (screen y points down).
             const DIRS = ['e', 'se', 's', 'sw', 'w', 'nw', 'n', 'ne'];
-            DIRS.concat('blink').forEach(d => { new Image().src = src(`owl-${d}`); });
+            // Warm the cache with both the day and the night frames.
+            DIRS.concat('blink').forEach(d => {
+                new Image().src = `img/pixel/owl-${d}.svg`;
+                new Image().src = `img/pixel/owl-eyes-${d}.svg`;
+            });
             let look = 'owl', blinking = false;
-            const draw = () => { owl.src = src(blinking ? 'owl-blink' : look); };
+            // data-owl tracks the frame, so a theme switch redraws the right one.
+            const draw = () => {
+                owl.dataset.owl = blinking ? 'owl-blink' : look;
+                owl.src = owlSrc(owl.dataset.owl);
+            };
             addEventListener('pointermove', e => {
                 const r = owl.getBoundingClientRect();
                 const dx = e.clientX - (r.left + r.width / 2);
