@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chessutra — Hoo Hoo Studios</title>
-  <meta name="description" content="Forty-nine ways to lose your king. Chessutra is a book of chess for iPhone, coming soon. Book I is free.">
+  <meta name="description" content="Forty-nine ways to take a king. Chessutra is a book of chess for iPhone, coming soon. Book I is free.">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
   <script src="theme.js"></script>
-  <meta property="og:title" content="Chessutra — forty-nine ways to lose your king">
+  <meta property="og:title" content="Chessutra — forty-nine ways to take a king">
   <meta property="og:description" content="A book of chess for iPhone. Your pieces can marry. The board has no edges. Coming soon.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hoo Hoo Studios">
@@ -45,7 +45,7 @@
       <div class="container">
         <span class="sprite sprite-chessutra ink" aria-hidden="true"></span>
         <h1 class="ink">Chessutra</h1>
-        <p class="hook">Forty-nine ways to lose your king.</p>
+        <p class="hook">Forty-nine ways to take a king.</p>
         <p class="lead">A book of chess for iPhone. Every chapter changes the rules. The king still falls.</p>
         <div class="cta">
           <!-- Swap for the App Store pre-order link once it exists:
@@ -56,29 +56,26 @@
       </div>
     </section>
 
-    <!-- The clip: one rule-breaking move, unexplained. -->
+    <!-- The clip: one move that breaks the rules, left unexplained. Board only. -->
     <section aria-label="A move from the game">
       <div class="container">
         <figure class="clip">
-          <!-- Replace the placeholder with the recorded clip, about 8 seconds:
-               <video src="img/chessutra/clip.mp4" poster="img/chessutra/marriage.jpg"
-                      autoplay muted loop playsinline width="660" height="1434"></video> -->
-          <div class="clip-placeholder" role="img" aria-label="Clip placeholder">
-            <span class="clip-tag">Clip goes here</span>
-            <span>About 8 seconds, looping, no sound.<br>One move that breaks the rules, left unexplained.</span>
-          </div>
+          <video data-src="img/chessutra/clips/two-kings.mp4" poster="img/chessutra/clips/two-kings.jpg"
+                 muted loop playsinline preload="none" width="720" height="720"
+                 aria-label="A white knight takes a black king. Another black king stays on the board, and the game goes on."></video>
+          <figcaption>A king falls. The game goes on.</figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- Premises, never mechanics. -->
+    <!-- Premises, never mechanics. Boards only, no app around them. -->
     <section class="legal-section">
       <div class="container">
         <ul class="premises">
-          <li><img src="img/chessutra/marriage.jpg" width="660" height="1434" alt="" loading="lazy"><p>Your pieces can marry.</p></li>
-          <li><img src="img/chessutra/torus.jpg" width="660" height="1434" alt="" loading="lazy"><p>The board has no edges.</p></li>
-          <li><img src="img/chessutra/purse.jpg" width="660" height="1434" alt="" loading="lazy"><p>What you capture, you can spend.</p></li>
-          <li class="more"><p>Hungry pieces must keep eating.</p><p class="pencil">…and forty-five more.</p></li>
+          <li><video data-src="img/chessutra/clips/spiral-files.mp4" poster="img/chessutra/clips/spiral-files.jpg" muted loop playsinline preload="none" width="720" height="720" aria-label="A rook lands on b8 and the king in the far corner is checkmated."></video><p>The board has no edges.</p></li>
+          <li><video data-src="img/chessutra/clips/cannon-bishop.mp4" poster="img/chessutra/clips/cannon-bishop.jpg" muted loop playsinline preload="none" width="720" height="720" aria-label="A bishop steps to c3 and checkmates the king on h8, with a pawn standing between them."></video><p>Check can come through a wall.</p></li>
+          <li><img src="img/chessutra/marriage-board.jpg" width="720" height="720" alt="A board where two pairs of pieces are outlined in gold" loading="lazy"><p>Your pieces can marry.</p></li>
+          <li class="more"><p>What you capture, you can spend.</p><p>Hungry pieces must keep eating.</p><p class="pencil">…and forty-three more.</p></li>
         </ul>
       </div>
     </section>
@@ -205,6 +202,16 @@
 
   <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    // The clips load after everything else, so type and sprites never wait
+    // on video. With reduced motion they stay on their poster, with controls.
+    addEventListener('load', () => {
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('video[data-src]').forEach(v => {
+        v.src = v.dataset.src;
+        if (still) { v.controls = true; return; }
+        v.play().catch(() => { v.controls = true; });
+      });
+    });
     try {
       const s = document.createElement('script');
       s.type = 'application/ld+json';
