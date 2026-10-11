@@ -400,3 +400,87 @@ code { font-family: var(--mono); background: var(--paper-light); padding: 0 0.25
   .support { grid-template-columns: 1fr; }
   .nav-links { gap: 1rem; font-size: 13px; }
 }
+
+/* ---------- App pages: Chessutra and its press kit ---------- */
+
+.sprite-chessutra { -webkit-mask-image: url('img/pixel/chessutra.svg'); mask-image: url('img/pixel/chessutra.svg'); }
+
+.product-hero { padding: 4.5rem 0 1rem; }
+.product-hero .sprite { width: calc(var(--px) * 16); height: calc(var(--px) * 16); margin-bottom: 1.5rem; }
+.product-hero h1 {
+  font-family: var(--pixel);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.1;
+}
+.product-hero .kicker { font-family: var(--pixel); font-size: 13px; color: var(--pencil); margin-bottom: 0.4rem; }
+.product-hero .lead { margin-top: 1rem; font-size: 16px; color: var(--ink); }
+.product-hero .motto { margin-top: 0.5rem; color: var(--ink-2); font-style: italic; }
+.product-hero .cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.product-hero .cta .note { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
+
+/* A button that isn't live yet: printed in pencil, not ink. */
+.btn.pending { color: var(--ink-2); background: none; border: 2px dashed var(--pencil); box-shadow: none; cursor: default; }
+a.btn { display: inline-block; }
+
+/* Screenshots: photographs, not sprites, so they scale smoothly. The strip
+   scrolls on its own; the page never does. */
+.shots {
+  display: flex;
+  gap: 1rem;
+  margin: 2.5rem calc(var(--gutter) * -1) 0;
+  padding: 0 var(--gutter) 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  list-style: none;
+}
+.shots li { flex: 0 0 auto; width: 200px; scroll-snap-align: start; }
+.shots img {
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+  border: 2px solid var(--ink);
+}
+.shots figcaption { margin-top: 0.5rem; font-size: 12px; line-height: 1.5; color: var(--ink-2); }
+.shots figcaption b { display: block; font-family: var(--pixel); font-weight: 400; font-size: 13px; color: var(--ink); }
+
+/* The seven books, each a short column of chapter titles. */
+.books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.75rem 1.5rem;
+  margin-top: 1rem;
+}
+.book h3 { font-family: var(--pixel); font-size: 13px; font-weight: 700; }
+.book h3 .free { font-weight: 400; color: var(--pencil); margin-left: 0.4em; }
+.book ol { list-style: none; margin-top: 0.4rem; font-size: 13px; color: var(--ink-2); }
+.book li { display: flex; gap: 0.6em; line-height: 1.6; }
+.book li .addr { flex: 0 0 3.2em; color: var(--pencil); }
+
+/* Label and value pairs: the facts, and the press fact sheet. */
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.5rem; margin-top: 0.5rem; }
+.facts dt { font-family: var(--pixel); font-size: 13px; line-height: 1.75rem; }
+.facts dd { color: var(--ink-2); }
+.facts dd a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.facts dd a:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+
+/* Press kit downloads: each image with its own link. */
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.25rem 1rem;
+  margin-top: 1rem;
+  list-style: none;
+}
+.kit-grid img { width: 100%; height: auto; image-rendering: auto; border: 2px solid var(--ink); }
+.kit-grid .icon img { border: 0; }
+.kit-grid a { display: block; margin-top: 0.4rem; font-family: var(--pixel); font-size: 13px; }
+.kit-grid a:hover { background: var(--ink); color: var(--paper); }
+.copy-block { margin-top: 0.5rem; padding: 1rem 1.25rem; background: var(--paper-light); border-left: 4px solid var(--ink); color: var(--ink); }
+
+@media (max-width: 520px) {
+  .product-hero h1 { font-size: 32px; }
+  .shots li { width: 160px; }
+  .facts { grid-template-columns: 1fr; gap: 0 0; }
+  .facts dd { margin-bottom: 0.6rem; }
+}
