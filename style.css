@@ -444,19 +444,6 @@ a.btn { display: inline-block; }
 .shots figcaption { margin-top: 0.5rem; font-size: 12px; line-height: 1.5; color: var(--ink-2); }
 .shots figcaption b { display: block; font-family: var(--pixel); font-weight: 400; font-size: 13px; color: var(--ink); }
 
-/* The seven books, each a short column of chapter titles. */
-.books {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.75rem 1.5rem;
-  margin-top: 1rem;
-}
-.book h3 { font-family: var(--pixel); font-size: 13px; font-weight: 700; }
-.book h3 .free { font-weight: 400; color: var(--pencil); margin-left: 0.4em; }
-.book ol { list-style: none; margin-top: 0.4rem; font-size: 13px; color: var(--ink-2); }
-.book li { display: flex; gap: 0.6em; line-height: 1.6; }
-.book li .addr { flex: 0 0 3.2em; color: var(--pencil); }
-
 /* Label and value pairs: the facts, and the press fact sheet. */
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.5rem; margin-top: 0.5rem; }
 .facts dt { font-family: var(--pixel); font-size: 13px; line-height: 1.75rem; }
@@ -536,29 +523,6 @@ a.btn { display: inline-block; }
 .scene h2 { margin-top: 0.6rem; font-family: var(--pixel); font-weight: 700; font-size: clamp(26px, 5.5vw, 48px); line-height: 1.15; }
 .scene p.answer { margin: 1rem auto 0; max-width: 32em; font-size: 15px; color: var(--ink-2); }
 
-/* Questions answered in words, side by side on wide screens. */
-.story .qa { padding-top: 7rem; }
-.qa { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 2.5rem; }
-.qa h3 { font-family: var(--pixel); font-size: 13px; font-weight: 400; color: var(--pencil); }
-.qa .big { margin-top: 0.5rem; font-family: var(--pixel); font-weight: 700; font-size: clamp(20px, 3vw, 26px); line-height: 1.3; }
-.qa p:not(.big) { margin-top: 0.75rem; color: var(--ink-2); }
-
-/* The contents, mostly inked over. */
-.s-contents { padding-top: 7rem; }
-.s-contents h2 { font-family: var(--pixel); font-weight: 700; font-size: clamp(26px, 5.5vw, 48px); line-height: 1.15; text-align: center; }
-.s-contents > .container > p { margin-top: 0.75rem; text-align: center; color: var(--ink-2); }
-.s-contents .books { margin-top: 2.5rem; }
-.redact {
-  display: inline-block;
-  flex: 0 1 auto;
-  width: calc(var(--w) * 0.5em);
-  max-width: 100%;
-  height: 0.95em;
-  margin-top: 0.35em;
-  background: var(--ink);
-  filter: url(#ink);
-}
-
 /* The close: one line, one button. */
 .s-close { padding: 8rem 0 2rem; text-align: center; }
 .s-close .hook { font-size: clamp(36px, 8vw, 64px); font-weight: 700; }
@@ -568,8 +532,6 @@ a.btn { display: inline-block; }
 .js .rise.in { opacity: 1; transform: none; }
 
 @media (max-width: 640px) {
-  .qa { grid-template-columns: 1fr; gap: 2.5rem; }
-  .story .qa, .s-contents { padding-top: 5rem; }
   .scene { padding-top: calc(56px + 1.5rem); }
   .board, .scene .board { margin-top: 1.5rem; }
   .story .wide .board { width: calc(100% + var(--gutter) * 2); margin-left: calc(var(--gutter) * -1); }
