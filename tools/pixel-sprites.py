@@ -65,6 +65,26 @@ for (x, y) in [(9, 4), (10, 4), (11, 4), (12, 4), (9, 7), (10, 7), (11, 7), (12,
     g[y][x] = '.'
 sprites['gridnite'] = g
 
+# Chessutra: inked icon, the app's lotus crown cut out in paper. Five
+# points, a band, and the lotus base.
+g = rounded(blank())
+for dy, row in enumerate(['#....##....#',
+                          '............',
+                          '.#...##...#.',
+                          '.##..##..##.',
+                          '.##.####.##.',
+                          '.##########.',
+                          '..########..',
+                          '............',
+                          '.##########.',
+                          '............',
+                          '..########..',
+                          '...######...']):
+    for dx, c in enumerate(row):
+        if c == '#':
+            g[2 + dy][2 + dx] = '.'
+sprites['chessutra'] = g
+
 # The owl: the studio mark, drawn natively on a 32x32 grid. Ear tufts, ring
 # eyes under the stern brow from the original logo, a paper beak, and
 # chevron feathers. The left half is drawn; the right is its mirror.

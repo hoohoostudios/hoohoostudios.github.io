@@ -400,3 +400,145 @@ code { font-family: var(--mono); background: var(--paper-light); padding: 0 0.25
   .support { grid-template-columns: 1fr; }
   .nav-links { gap: 1rem; font-size: 13px; }
 }
+
+/* ---------- App pages: Chessutra and its press kit ---------- */
+
+.sprite-chessutra { -webkit-mask-image: url('img/pixel/chessutra.svg'); mask-image: url('img/pixel/chessutra.svg'); }
+
+.product-hero { padding: 4.5rem 0 1rem; }
+.product-hero .sprite { width: calc(var(--px) * 16); height: calc(var(--px) * 16); margin-bottom: 1.5rem; }
+.product-hero h1 {
+  font-family: var(--pixel);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.1;
+}
+.product-hero .kicker { font-family: var(--pixel); font-size: 13px; color: var(--pencil); margin-bottom: 0.4rem; }
+.product-hero .lead { margin-top: 1rem; font-size: 16px; color: var(--ink); }
+.product-hero .motto { margin-top: 0.5rem; color: var(--ink-2); font-style: italic; }
+.product-hero .cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.product-hero .cta .note { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
+
+/* A button that isn't live yet: printed in pencil, not ink. */
+.btn.pending { color: var(--ink-2); background: none; border: 2px dashed var(--pencil); box-shadow: none; cursor: default; }
+a.btn { display: inline-block; }
+
+/* Screenshots: photographs, not sprites, so they scale smoothly. The strip
+   scrolls on its own; the page never does. */
+.shots {
+  display: flex;
+  gap: 1rem;
+  margin: 2.5rem calc(var(--gutter) * -1) 0;
+  padding: 0 var(--gutter) 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  list-style: none;
+}
+.shots li { flex: 0 0 auto; width: 200px; scroll-snap-align: start; }
+.shots img {
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+  border: 2px solid var(--ink);
+}
+.shots figcaption { margin-top: 0.5rem; font-size: 12px; line-height: 1.5; color: var(--ink-2); }
+.shots figcaption b { display: block; font-family: var(--pixel); font-weight: 400; font-size: 13px; color: var(--ink); }
+
+/* Label and value pairs: the facts, and the press fact sheet. */
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.5rem; margin-top: 0.5rem; }
+.facts dt { font-family: var(--pixel); font-size: 13px; line-height: 1.75rem; }
+.facts dd { color: var(--ink-2); }
+.facts dd a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.facts dd a:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+
+/* Press kit downloads: each image with its own link. */
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.25rem 1rem;
+  margin-top: 1rem;
+  list-style: none;
+}
+.kit-grid img { width: 100%; height: auto; image-rendering: auto; border: 2px solid var(--ink); }
+.kit-grid .icon img { border: 0; }
+.kit-grid a { display: block; margin-top: 0.4rem; font-family: var(--pixel); font-size: 13px; }
+.kit-grid a:hover { background: var(--ink); color: var(--paper); }
+.copy-block { margin-top: 0.5rem; padding: 1rem 1.25rem; background: var(--paper-light); border-left: 4px solid var(--ink); color: var(--ink); }
+
+@media (max-width: 520px) {
+  .product-hero h1 { font-size: 32px; }
+  .shots li { width: 160px; }
+  .facts { grid-template-columns: 1fr; gap: 0 0; }
+  .facts dd { margin-bottom: 0.6rem; }
+}
+
+/* ---------- Chessutra: the scrolling page ----------
+ * One question per screen, a big board for each, and the button never more
+ * than a tap away. Boards are recordings of the app cropped to the board. */
+
+.story { --wide: 880px; }
+.story .wide { width: 100%; max-width: calc(var(--wide) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Product bar: slides in once the first button scrolls away. */
+.pbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  background: var(--paper);
+  box-shadow: 0 2px 0 var(--ink);
+  transform: translateY(-110%);
+  transition: transform 0.25s steps(3, end);
+}
+.pbar.on { transform: none; }
+.pbar .inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 56px; }
+.pbar .name { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--pixel); font-weight: 700; font-size: 16px; }
+.pbar .sprite { width: 24px; height: 24px; }
+.pbar .btn { font-size: 13px; padding: 0.45rem 0.8rem; }
+
+/* Hero: the name, the hook, the button, then the first board, big. */
+.s-hero { padding: 3.5rem 0 0; text-align: center; }
+.s-hero .sprite { width: calc(var(--px) * 16); height: calc(var(--px) * 16); margin: 0 auto 1.25rem; }
+.s-hero h1 { font-family: var(--pixel); font-weight: 700; font-size: clamp(40px, 9vw, 72px); line-height: 1; }
+.hook { font-family: var(--pixel); font-size: clamp(20px, 4vw, 32px); line-height: 1.3; margin-top: 1rem; }
+.s-hero .lead { margin: 1rem auto 0; max-width: 34em; color: var(--ink-2); font-size: 15px; }
+.cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.75rem 1.5rem; }
+.cta .note { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
+
+/* A board, as large as the screen allows: never taller than the screen,
+   less the product bar, its caption and a margin, so the whole board is in
+   view at once. */
+.board { margin: 3rem auto 0; width: min(100%, var(--wide), calc(100svh - 56px - 5rem)); }
+.board video { display: block; width: 100%; height: auto; aspect-ratio: 1; background: var(--paper-light); border: 2px solid var(--ink); }
+.board figcaption { margin-top: 0.75rem; font-family: var(--pixel); font-size: 13px; color: var(--ink-2); text-align: center; }
+
+/* Each screen: a small label, a big line, a short answer, then the board.
+   A scene is one screen tall, and its board takes what the words leave:
+   the largest square that fits, so the line and the whole board are in
+   view together. The top padding clears the product bar. */
+.scene { display: flex; flex-direction: column; height: 100svh; min-height: 34rem; padding: calc(56px + 2rem) 0 2rem; text-align: center; }
+.scene .wide { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.scene .board { flex: 1 1 0; min-height: 0; width: 100%; margin-top: 2rem; container-type: size; display: flex; justify-content: center; align-items: center; }
+.scene .board video { width: min(100cqw, 100cqh); }
+.scene .label { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
+.scene h2 { margin-top: 0.6rem; font-family: var(--pixel); font-weight: 700; font-size: clamp(26px, 5.5vw, 48px); line-height: 1.15; }
+.scene p.answer { margin: 1rem auto 0; max-width: 32em; font-size: 15px; color: var(--ink-2); }
+
+/* The close: one line, one button. */
+.s-close { padding: 8rem 0 2rem; text-align: center; }
+.s-close .hook { font-size: clamp(36px, 8vw, 64px); font-weight: 700; }
+
+/* Scenes rise in as they arrive, in whole steps like the rest of the site. */
+.js .rise { opacity: 0; transform: translateY(24px); transition: opacity 0.45s steps(4, end), transform 0.45s steps(4, end); }
+.js .rise.in { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .scene { padding-top: calc(56px + 1.5rem); }
+  .board, .scene .board { margin-top: 1.5rem; }
+  .story .wide .board { width: calc(100% + var(--gutter) * 2); margin-left: calc(var(--gutter) * -1); }
+  .board video { border-left: 0; border-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .rise { opacity: 1; transform: none; transition: none; }
+  .pbar { transition: none; }
+}
+.legal-hero .cta { justify-content: flex-start; }
