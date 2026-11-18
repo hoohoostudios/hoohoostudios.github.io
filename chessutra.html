@@ -33,8 +33,7 @@
   <div class="pbar" id="pbar" aria-hidden="true">
     <div class="wide inner">
       <span class="name"><span class="sprite sprite-chessutra" aria-hidden="true"></span>Chessutra</span>
-      <!-- Swap for the pre-order link: <a class="btn" href="https://apps.apple.com/app/idXXXXXXXXXX">Pre-order</a> -->
-      <span class="btn pending" role="text">Coming soon</span>
+      <span class="btn pending" role="text" data-store="Download">Coming soon</span>
     </div>
   </div>
 
@@ -59,7 +58,7 @@
         <p class="hook">Forty-nine ways to take a king.</p>
         <p class="lead">A book of chess for iPhone and iPad. Every chapter changes the rules. The king still falls.</p>
         <div class="cta" id="hero-cta">
-          <span class="btn pending" role="text">Coming soon to iPhone and iPad</span>
+          <span class="btn pending" role="text" data-store="Download on the App Store">Coming soon to iPhone and iPad</span>
         </div>
         <figure class="board">
           <video data-src="img/chessutra/clips/two-kings.mp4" poster="img/chessutra/clips/two-kings.jpg"
@@ -115,7 +114,7 @@
       <div class="wide">
         <p class="hook ink">Your move.</p>
         <div class="cta">
-          <span class="btn pending" role="text">Coming soon to iPhone and iPad</span>
+          <span class="btn pending" role="text" data-store="Download on the App Store">Coming soon to iPhone and iPad</span>
         </div>
       </div>
     </section>
@@ -180,6 +179,28 @@
           bar.setAttribute('aria-hidden', past ? 'false' : 'true');
         }).observe(cta);
       }
+    })();
+
+    // Every "Coming soon" turns into the download link by itself once the App
+    // Store lists Chessutra: Apple's lookup answers by JSONP, so no server
+    // and no swap by hand on launch day. Until then nothing changes.
+    window.chessutraListed = r => {
+      const app = r && r.results && r.results[0];
+      if (!app) return;
+      const url = (app.trackViewUrl || 'https://apps.apple.com/app/id6828199656').split('?')[0];
+      document.querySelectorAll('[data-store]').forEach(el => {
+        const a = document.createElement('a');
+        a.className = 'btn';
+        a.href = url;
+        a.textContent = el.dataset.store;
+        el.replaceWith(a);
+      });
+    };
+    (() => {
+      const s = document.createElement('script');
+      s.src = 'https://itunes.apple.com/lookup?id=6828199656&callback=chessutraListed';
+      s.async = true;
+      document.head.appendChild(s);
     })();
 
     try {
