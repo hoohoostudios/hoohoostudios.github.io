@@ -517,13 +517,21 @@ a.btn { display: inline-block; }
 .cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.75rem 1.5rem; }
 .cta .note { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
 
-/* A board, as large as the screen allows. */
-.board { margin: 3rem auto 0; width: min(100%, var(--wide)); }
+/* A board, as large as the screen allows: never taller than the screen,
+   less the product bar, its caption and a margin, so the whole board is in
+   view at once. */
+.board { margin: 3rem auto 0; width: min(100%, var(--wide), calc(100svh - 56px - 5rem)); }
 .board video { display: block; width: 100%; height: auto; aspect-ratio: 1; background: var(--paper-light); border: 2px solid var(--ink); }
 .board figcaption { margin-top: 0.75rem; font-family: var(--pixel); font-size: 13px; color: var(--ink-2); text-align: center; }
 
-/* Each screen: a small label, a big line, a short answer, then the board. */
-.scene { padding: 7rem 0 0; text-align: center; }
+/* Each screen: a small label, a big line, a short answer, then the board.
+   A scene is one screen tall, and its board takes what the words leave:
+   the largest square that fits, so the line and the whole board are in
+   view together. The top padding clears the product bar. */
+.scene { display: flex; flex-direction: column; height: 100svh; min-height: 34rem; padding: calc(56px + 2rem) 0 2rem; text-align: center; }
+.scene .wide { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.scene .board { flex: 1 1 0; min-height: 0; width: 100%; margin-top: 2rem; container-type: size; display: flex; justify-content: center; align-items: center; }
+.scene .board video { width: min(100cqw, 100cqh); }
 .scene .label { font-family: var(--pixel); font-size: 13px; color: var(--pencil); }
 .scene h2 { margin-top: 0.6rem; font-family: var(--pixel); font-weight: 700; font-size: clamp(26px, 5.5vw, 48px); line-height: 1.15; }
 .scene p.answer { margin: 1rem auto 0; max-width: 32em; font-size: 15px; color: var(--ink-2); }
@@ -561,8 +569,9 @@ a.btn { display: inline-block; }
 
 @media (max-width: 640px) {
   .qa { grid-template-columns: 1fr; gap: 2.5rem; }
-  .scene, .story .qa, .s-contents { padding-top: 5rem; }
-  .board { margin-top: 2rem; }
+  .story .qa, .s-contents { padding-top: 5rem; }
+  .scene { padding-top: calc(56px + 1.5rem); }
+  .board, .scene .board { margin-top: 1.5rem; }
   .story .wide .board { width: calc(100% + var(--gutter) * 2); margin-left: calc(var(--gutter) * -1); }
   .board video { border-left: 0; border-right: 0; }
 }
